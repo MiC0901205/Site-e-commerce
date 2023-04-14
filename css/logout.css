@@ -1,0 +1,110 @@
+
+h1
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: blue;
+    background-color: aqua;
+    text-align: center;
+}
+
+body
+{
+    background-color: white;
+}
+
+#contener
+{
+    margin-top: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.element:nth-child(2) /* On prend le deuxième bloc élément */
+{
+    align-self: flex-end; /* Seul ce bloc sera aligné à la fin */
+}
+
+.element1, .element2, .element3
+{
+    size: 10px;
+}
+
+.moitiePage
+{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.finPage
+{
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+
+.desc{
+    background-color: white;
+    color:black;
+
+}
+
+
+.container{
+    margin-left: 335px;
+}
+
+.center{
+    margin-right: 200px;
+}
+
+.mySlides{
+    display: none;
+}
+
+.col-sm-3{
+    background-color: wheat;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.col-sm-4{
+    margin-bottom: 20px;
+}
+
+
+.btn-primary{
+    margin-bottom: 20px;
+}
+
+.btn-qte{
+    max-height: 30px;
+    min-height: 5px;
+    margin-left: 160px;
+    max-width: 10px;
+    background-color: red;
+}
+
+.plus{
+    margin-right: 100px;
+}
+
+a:link { 
+    text-decoration: none; 
+}
+
+
+a:visited { 
+    text-decoration: none; 
+}
+
+
+a:hover { 
+    text-decoration: none;
+}
+
+
+a:active { 
+    text-decoration: none; 
+}

@@ -1,0 +1,56 @@
+h2 {
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+strong {
+    margin-bottom: 10px;
+}
+
+.section-content {
+    justify-content: center;
+}
+
+.row1 {
+    border: 2px solid black;
+    text-align: center;
+    top: 520px;
+    left: 360px;
+    width: 250px;
+    margin-top: 50px;
+    margin-left: 150px;
+    border-radius: 30px;
+    box-shadow: 20px -5px black;
+}
+
+.row2 {
+    border: 2px solid black;
+    text-align: center;
+    top: 520px;
+    left: 760px;
+    width: 250px;
+    margin-top: 50px;
+    border-radius: 30px;
+    box-shadow: 20px -5px black;
+}
+
+.row3 {
+    border: 2px solid black;
+    text-align: center;
+    top: 520px;
+    left: 760px;
+    width: 250px;
+    margin-top: 50px;
+    margin-right: 150px;
+    border-radius: 30px;
+    box-shadow: 20px -5px black;
+}

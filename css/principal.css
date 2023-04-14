@@ -1,0 +1,193 @@
+
+h1
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: blue;
+    background-color: aqua;
+    text-align: center;
+}
+
+body
+{
+    background-color: white;
+}
+
+#contener
+{
+    margin-top: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.element:nth-child(2) /* On prend le deuxième bloc élément */
+{
+    align-self: flex-end; /* Seul ce bloc sera aligné à la fin */
+}
+
+.element1, .element2, .element3
+{
+    size: 10px;
+}
+
+.moitiePage
+{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.finPage
+{
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+li.btn{
+	display: inline-block;
+	list-style-type: none;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    margin-left: -10px;
+}
+
+li.btn a{
+	color: black;
+	text-decoration: none;
+	padding: 10px;
+}
+
+li.btn:hover a{
+	color: blue;
+	background-color: white;
+	transition: 0.3s all;
+}
+
+.desc{
+    background-color: white;
+    color:black;
+
+}
+
+.container{
+    margin-left: 335px;
+}
+
+.center{
+    margin-right: 200px;
+}
+
+.mySlides{
+    display: none;
+}
+
+.col-sm-3{
+    background-color: aquamarine;
+}
+
+.btn-panier{
+	display: inline-block;
+	list-style-type: none;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    margin-left: -10px;
+}
+
+.btn-panier a{
+	color: black;
+	text-decoration: none;
+	padding: 10px;
+}
+
+.btn-panier:hover a{
+	color: blue;
+	background-color: white;
+	transition: 0.3s all;
+}
+
+.btn-panier{
+    margin-top: -10px;
+    margin-right: -15px;
+}
+
+.btn-connexion{
+    margin-top: -10px;
+}
+
+#connecter{
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: green;
+    margin-top: 14px;
+    margin-left: -15px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.container {
+    align-items: center;
+    margin-left: 350px;
+}
+
+.img {
+    margin-left: 200px;
+}
+
+.desc {
+    margin-left: 10px;
+}
+
+h5 {
+    color: black;
+}
+
+.navFooterLine {
+    margin-left: 350px;
+    margin-bottom: 20px;
+    column-width: 15em;
+    column-rule: 1px solid rgb(75, 70, 74);
+    justify-content: center;
+}
+
+.footer {
+    margin-top: 40px;
+    background-color: rgba(255, 255, 255, 0);
+
+}
+
+.nav_a {
+    text-decoration: none;
+    color: black;
+    margin-right: -20px;
+    align-items: center;
+}
+
+.nav_last {
+    margin-left: 650px;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.545);
+    box-shadow: 3px 0px white, -1em 0 .5em black;
+    border-radius: 10px 100px / 120px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-link {
+    margin-top: 3px;
+}
+
+.footer {
+    box-shadow: 3px 0px white, -1em 0 .4em black;
+    border-radius: 30px;
+}
+
+.nav-info {
+    margin-right: -20px;
+}

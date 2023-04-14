@@ -1,0 +1,64 @@
+.col-sm-3{
+    background-color: wheat;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h1
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: blue;
+    background-color: aqua;
+    text-align: center;
+}
+
+li.btn{
+	display: inline-block;
+	list-style-type: none;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    margin-left: -10px;
+}
+
+li.btn a{
+	color: black;
+	text-decoration: none;
+	padding: 10px;
+}
+
+li.btn:hover a{
+	color: blue;
+	background-color: white;
+	transition: 0.3s all;
+}
+
+.product:hover img{
+    display:none;
+}
+
+.product:hover{
+    background-color: #efe1c6;
+}
+
+#description{
+    display: none;
+}
+
+.product:hover #description{
+    display:block;
+}
+
+img{
+    max-height: 150px;
+}
+
+.btn-primary{
+    margin-bottom: 20px;
+}
+
+.product:hover p{
+    display:none;
+}
+
+
