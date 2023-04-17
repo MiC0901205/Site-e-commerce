@@ -96,11 +96,30 @@
                 <?php   
                 }
             ?>
-            <label><b>Mot de passe</b></label>
-            <input type="password" placeholder="Mot de passe*" name="mdp" value="<?php if(isset($mdp)){ echo $mdp; }?>" required>
-            <label><b>Confirmer le mot de passe</b></label>
-            <input type="password" placeholder="Confirmer le mot de passe" name="confmdp" required>
 
+            <script src="./js/register.js"></script> 
+            <label class="password_label"><b>Mot de passe</b>
+                <input class="psw" type="password" placeholder="Mot de passe*" name="mdp" value="<?php if(isset($mdp)){ echo $mdp; }?>" required>
+                <div class="password-icon">
+                    <i data-feather="eye" onclick="change()"></i>
+                    <i data-feather="eye-off" onclick="change()"></i>
+                </div>
+            </label>
+
+            <label class="password_label"><b>Confirmer le mot de passe</b>
+            <input class="psw" type="password" placeholder="Confirmer le mot de passe" name="confmdp" required>
+                <div class="password-icon-conf">
+                    <i data-feather="eye" onclick="change()"></i>
+                    <i data-feather="eye-off" onclick="change()"></i>
+                </div>
+            </label>
+
+            <!-- script JS icon -->
+            <script src="https://unpkg.com/feather-icons"></script>
+            <script>
+                feather.replace();
+            </script>
+            
             <input type="submit" id="inscription" value="S'inscrire">
             </form>
         </div>

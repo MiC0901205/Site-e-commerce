@@ -24,13 +24,13 @@
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="./img/OIP.jpg" class="d-block w-100" alt="...">
+				<img src="./img/logo.jpg" class="d-block" alt="...">
       		</div>
 			<div class="carousel-item">
-				<img src="./img/batterie_antichoc/batterie_antichoc.jpg" class="d-block w-50 responsive" alt="...">
+				<img src="./img/fiche_batterie.png" class="d-block" alt="...">
 			</div>
 			<div class="carousel-item">
-				<img src="./img/batterie_ronde/batterie_externe.jpg" class="d-block w-50 responsive" alt="...">
+				<img src="./img/fiche_produit.png" class="d-block" alt="...">
 			</div>
 		</div>
 		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -60,9 +60,9 @@
 						<a class="nav-link active dropdown-toggle" aria-current="page" role="button"
 							data-bs-toggle="dropdown" href="#">Types</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="ronde.php">Ronde</a></li>
-							<li><a class="dropdown-item" href="compacte.php">UltraCompacte</a></li>
-							<li><a class="dropdown-item" href="antichoc.php">Antichoc</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeBatterie&type=ronde">Ronde</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeBatterie&type=compacte">UltraCompacte</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeBatterie&type=antichoc">Antichoc</a></li>
 						</ul>
 					</li>
 					</li>
@@ -70,9 +70,9 @@
 						<a class="nav-link active dropdown-toggle" aria-current="page" role="button"
 							data-bs-toggle="dropdown" href="#"> Capacités </a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="ampere5.php">5000 Ampères</a></li>
-							<li><a class="dropdown-item" href="ampere20.php">20000 Ampères</a></li>
-							<li><a class="dropdown-item" href="ampere40.php">40000 Ampères</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=petiteCapaciteBatterie&capacite=5000">5000 Ampères</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=moyenneCapaciteBatterie&capacite=20000">20000 Ampères</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=grandeCapaciteBatterie&capacite=40000">40000 Ampères</a></li>
 						</ul>
 					</li>
 					</li>
@@ -80,9 +80,9 @@
 						<a class="nav-link active dropdown-toggle" aria-current="page" role="button"
 							data-bs-toggle="dropdown" href="#"> Tailles </a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="petite.php">Petite</a></li>
-							<li><a class="dropdown-item" href="moyenne.php">Moyenne</a></li>
-							<li><a class="dropdown-item" href="grande.php">Grande</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=petiteTailleBatterie&taille=1000">Petite</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=moyenneTailleBatterie&taille=5000">Moyenne</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=grandeTailleBatterie&taille=10000">Grande</a></li>
 						</ul>
 					</li>
 					</li>
@@ -90,9 +90,9 @@
 						<a class="nav-link active dropdown-toggle" aria-current="page" role="button"
 							data-bs-toggle="dropdown" href="#"> Plus de produits </a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="souris.php"> Souris </a></li>
-							<li><a class="dropdown-item" href="cable.php"> Câbles de recharge</a></li>
-							<li><a class="dropdown-item" href="clavier.php"> Clavier </a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeProduit&type=2"> Souris </a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeProduit&type=4"> Câbles de recharge</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeProduit&type=3"> Clavier </a></li>
 						</ul>
 					</li>
 					</li>
@@ -128,7 +128,7 @@
 				if(isset($_SESSION['adresse_mail'])){
 					echo '<li class="nav-item dropdown btn-deconnexion">
 							<a class="nav-link active " aria-current="page" role="button"
-							data-bs-toggle="dropdown" href="#"><img src="./img/account logo.jpg" height="30px" width="30px"></a>
+							data-bs-toggle="dropdown" href="#"><img src="./img/account_logo_logged.png" height="30px" width="30px"></a>
 							<ul class="dropdown-menu dropdown-menu-end">';
 							if(isset($_SESSION['isAdmin'])) {
 								if($_SESSION['isAdmin'] == 1) {
@@ -140,11 +140,10 @@
 							} else {
 								echo $parameterUser;		
 							}
-					echo '<div id="connecter"></div>';
 				} else {
 					echo '<li class="btn btn-connexion">
 							<a href="./index.php?uc=login&action=demandeConnexion">
-								<img src="./img/account logo.jpg" height="30px" width="30px">
+								<img src="./img/account_logo.png" height="30px" width="30px">
 							</a>
 						</li>';
 				}

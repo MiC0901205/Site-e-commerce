@@ -35,15 +35,15 @@ include 'navbar.php';
 		<div class="footer">
 			<div class="navFooterLine">
 				<ul>
-					<div class="nav_info" style="margin-left:50px;">
-						<li class="nav_first" style="margin-left:-50px;">
-							<a href="./index.php?uc=footer&action=conditionUtilisation" class="nav_a">Condition général d'utilisation</a>
+					<div class="nav_info">
+						<li class="nav_first">
+							<a href="./index.php?uc=footer&action=conditionUtilisation" class="nav_a responsive" style="margin-right:20%">Condition général d'utilisation</a>
 						</li>
 						<li class="nav_second">
-							<a href="./index.php?uc=footer&action=mentionLegale" class="nav_b">Mentions Légales</a>
+							<a href="./index.php?uc=footer&action=mentionLegale" class="nav_b responsive" style="margin-left:20%">Mentions Légales</a>
 						</li>
 						<li class="nav_third">
-							<a href="./index.php?uc=footer&action=cookies" class="nav_c">Utilisation des cookies</a>
+							<a href="./index.php?uc=footer&action=cookies" class="nav_c responsive">Utilisation des cookies</a>
 						</li>
 					</div>
 				</ul>

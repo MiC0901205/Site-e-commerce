@@ -35,6 +35,10 @@ switch ($uc) {
     case 'footer':
         include 'controller/infoFooterController.php';
         break;
+
+    case 'produit':
+        include 'controller/produitController.php';
+        break;
 }
 
 ?>

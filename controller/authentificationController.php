@@ -8,16 +8,18 @@ switch ($action) {
     case 'logout':
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
-        }   
+        }
+ 
+        unset($_SESSION['id']);   
         unset($_SESSION['adresse_mail']);
         unset($_SESSION['panierListe']);
         unset($_SESSION['lastdate']);
         unset($_SESSION['isAdmin']);
     
-        if(isset($_GET['afk'])){
-            header("Location: ./index.php?afk=true");
+        if(!isset($_GET['afk'])){
+            header("Location: ./index.php");   
         } else {
-            header("Location: ./index.php");
+            header("Location: ./index.php?afk=true");
         }
     break;
     

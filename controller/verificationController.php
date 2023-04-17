@@ -12,6 +12,7 @@ switch ($action) {
 
 
    case 'confirm_mail' :
+      echo "Un mail vous a été envoyé, veuillez vérifier votre boite mail";
       if (session_status() === PHP_SESSION_NONE) {
          session_start();
       } 
@@ -31,7 +32,7 @@ switch ($action) {
       // Préparation du mail contenant le lien d'activation
       $destinataire = $login;
       $sujet = "Activer votre compte" ;
-      $entete = "From: connexion@Site e-commerce.com" ;
+      $entete = "From: connexion@site-e-commerce.com" ;
       
       // Le lien d'activation est composé du login(log) et de la clé(cle)
       $message = 'Bienvenue sur notre site de vente de batteries externes,

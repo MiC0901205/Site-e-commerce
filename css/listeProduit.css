@@ -1,15 +1,16 @@
 .col-sm-3{
-    background-color: wheat;
+    background:rgb(49, 1, 49);
     margin-right: 20px;
     margin-bottom: 20px;
     text-align: center;
+    border-radius: 10px 85px / 120px;
 }
 
 h1
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: blue;
-    background-color: aqua;
+    color: white;
+    background:rgb(49, 1, 49);
     text-align: center;
 }
 
@@ -22,13 +23,13 @@ li.btn{
 }
 
 li.btn a{
-	color: black;
+	color: white;
 	text-decoration: none;
 	padding: 10px;
 }
 
 li.btn:hover a{
-	color: blue;
+	color: white;
 	background-color: white;
 	transition: 0.3s all;
 }
@@ -38,7 +39,7 @@ li.btn:hover a{
 }
 
 .product:hover{
-    background-color: #efe1c6;
+    background:rgb(107, 2, 107);
 }
 
 #description{
@@ -61,4 +62,11 @@ img{
     display:none;
 }
 
+p {
+    color: white;
+}
+
+h4 {
+    color:white
+}
 

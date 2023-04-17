@@ -40,5 +40,7 @@ email : test@gmail.com
 1. Fonctionnalité 
    - Permet à l'utilisateur de voir toutes les commandes qu'il a passée
  
+Lien pour accéder à la documentation
+[accès Doc]
 
 
