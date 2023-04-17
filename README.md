@@ -39,8 +39,8 @@ email : test@gmail.com
 ## Historique commande
 1. Fonctionnalité 
    - Permet à l'utilisateur de voir toutes les commandes qu'il a passée
- 
-Lien pour accéder à la documentation
-[accès Doc]
+
+## Lien pour accéder à la documentation
+[accès Doc](https://urlz.fr/lqCT)
 
 
