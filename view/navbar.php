@@ -28,9 +28,15 @@
       		</div>
 			<div class="carousel-item">
 				<img src="./img/fiche_batterie.png" class="d-block" alt="...">
+				<li><a class="btn1" href="./index.php?uc=produit&action=typeBatterie&type=antichoc"></a></li>			
+				<li><a class="btn2" href="./index.php?uc=produit&action=typeBatterie&type=ultracompacte"></a></li>			
+				<li><a class="btn3" href="./index.php?uc=produit&action=typeBatterie&type=ronde"></a></li>			
 			</div>
 			<div class="carousel-item">
 				<img src="./img/fiche_produit.png" class="d-block" alt="...">
+				<li><a class="btn1" href="./index.php?uc=produit&action=typeProduit&type=4"></a></li>			
+				<li><a class="btn2" href="./index.php?uc=produit&action=typeProduit&type=3"></a></li>			
+				<li><a class="btn3" href="./index.php?uc=produit&action=typeProduit&type=2"></a></li>	
 			</div>
 		</div>
 		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -61,7 +67,7 @@
 							data-bs-toggle="dropdown" href="#">Types</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeBatterie&type=ronde">Ronde</a></li>
-							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeBatterie&type=compacte">UltraCompacte</a></li>
+							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeBatterie&type=ultracompacte">UltraCompacte</a></li>
 							<li><a class="dropdown-item" href="./index.php?uc=produit&action=typeBatterie&type=antichoc">Antichoc</a></li>
 						</ul>
 					</li>
@@ -103,9 +109,12 @@
 				<button class="btn btn-outline-success" type="submit">Rechercher</button>
 			</form>
 			<li class="btn btn-panier">
-				<a href="panier.php">
-					<img src="./img/panier-removebg-preview.png" height="30px" width="30px">
-				</a>
+				<div id="tooltip">
+					<a href="./index.php?uc=panier&action=panier">
+					<span id="tooltipText" class="tooltipText">Panier</span>
+					<span><img src="./img/panier-removebg-preview.png" height="30px" width="30px"></span>
+					</a>
+				</div>
 			</li>
 			<?php
 				if(!empty($_SESSION['adresse_mail'])) {
@@ -120,19 +129,23 @@
 					$_SESSION['lastdate'] = $date->getTimestamp();
 				}
 
-				$parameterUser = '<li><a class="dropdown-item" href="Infosclient.php"> Mon profil </a></li>
-				<li><a class="dropdown-item" href="historique_cmd.php"> Mon historique </a></li>
+				$parameterUser = '<li><a class="dropdown-item" href="./index.php?uc=infoClient&action=info"> Mon profil </a></li>
+				<li><a class="dropdown-item" href="./index.php?uc=infoClient&action=historique"> Mon historique </a></li>
 				<li><a class="dropdown-item" href="./index.php?uc=logout&action=logout"> Deconnexion </a></li>
 					</ul>
 				</li>';
 				if(isset($_SESSION['adresse_mail'])){
 					echo '<li class="nav-item dropdown btn-deconnexion">
-							<a class="nav-link active " aria-current="page" role="button"
-							data-bs-toggle="dropdown" href="#"><img src="./img/account_logo_logged.png" height="30px" width="30px"></a>
+								<a class="nav-link active" aria-current="page" role="button" data-bs-toggle="dropdown" href="#">
+								<div id="tooltip">
+									<span id="tooltipTextCompte" class="tooltipText" style="left:-100%; top:140%;">Compte</span>
+									<span><img src="./img/account_logo_logged.png" height="30px" width="30px"></span>
+								</div>
+								</a>
 							<ul class="dropdown-menu dropdown-menu-end">';
 							if(isset($_SESSION['isAdmin'])) {
 								if($_SESSION['isAdmin'] == 1) {
-									echo '<li><a class="dropdown-item" href="#"> Administration </a></li>';
+									echo '<li><a class="dropdown-item" href="./index.php?uc=admin&action=admin"> Administration </a></li>';
 									echo $parameterUser;		
 								} else {
 									echo $parameterUser;		
@@ -142,9 +155,12 @@
 							}
 				} else {
 					echo '<li class="btn btn-connexion">
-							<a href="./index.php?uc=login&action=demandeConnexion">
-								<img src="./img/account_logo.png" height="30px" width="30px">
-							</a>
+							<div id="tooltip">
+								<a href="./index.php?uc=login&action=demandeConnexion">
+								<span id="tooltipTextConnexion" class="tooltipText">Connexion</span>
+								<span><img src="./img/account_logo.png" height="30px" width="30px"></span>
+								</a>
+							</div>
 						</li>';
 				}
 

@@ -21,7 +21,7 @@ strong {
 }
 
 .row1 {
-    border: 2px solid black;
+    border: 2px solid rgb(39, 1, 39);
     text-align: center;
     top: 520px;
     left: 360px;
@@ -29,22 +29,22 @@ strong {
     margin-top: 50px;
     margin-left: 150px;
     border-radius: 30px;
-    box-shadow: 20px -5px black;
+    box-shadow: 20px -5px rgb(39, 1, 39);
 }
 
 .row2 {
-    border: 2px solid black;
+    border: 2px solid rgb(39, 1, 39);
     text-align: center;
     top: 520px;
     left: 760px;
     width: 250px;
     margin-top: 50px;
     border-radius: 30px;
-    box-shadow: 20px -5px black;
+    box-shadow: 20px -5px rgb(39, 1, 39);
 }
 
 .row3 {
-    border: 2px solid black;
+    border: 2px solid rgb(39, 1, 39);
     text-align: center;
     top: 520px;
     left: 760px;
@@ -52,5 +52,5 @@ strong {
     margin-top: 50px;
     margin-right: 150px;
     border-radius: 30px;
-    box-shadow: 20px -5px black;
+    box-shadow: 20px -5px rgb(39, 1, 39);
 }

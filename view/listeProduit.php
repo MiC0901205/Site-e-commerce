@@ -10,7 +10,7 @@ include 'navbar.php';
 				foreach($listeProduct as $product){ 
 				    echo '<div class="col-sm-3 center product">
 							<h4> '.$product['Nom'].'</h4>
-							<img src="./img/'.$product['Image'].'" width = "200px"> 
+							<img class="img_Prod" src="./img/'.$product['Image'].'" width = "200px"> 
 							<p id="description">' .$product['description'].'</p>
 							<p>
 								Couleur : '.$product['Couleur'].'
@@ -22,7 +22,7 @@ include 'navbar.php';
 								Dimensions : '.$product['Longueur'].' x '.$product['Largeur'].' x '.$product['Hauteur'].' cm <br>
 								Poids : '.$product['Poids'].' g
 							</p>
-							<a href="./panier.php?id='.$product['idProduit'].'" class="btn btn-primary" type="submit">Ajouter au panier</button></a>
+							<a href="./index.php?uc=panier&action=panier&id='.$product['idProduit'].'" class="btn btn-primary" type="submit">Ajouter au panier</button></a>
 						</div>';
 				}  	
 			?>

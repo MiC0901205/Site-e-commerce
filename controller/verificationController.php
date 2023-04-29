@@ -1,6 +1,8 @@
 <?php
 
-require_once('./model/login_db.php');
+require_once('./model/Client.php');
+require_once('./repository/ClientRepository.php');
+
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
 
@@ -12,7 +14,7 @@ switch ($action) {
 
 
    case 'confirm_mail' :
-      echo "Un mail vous a été envoyé, veuillez vérifier votre boite mail";
+
       if (session_status() === PHP_SESSION_NONE) {
          session_start();
       } 
@@ -22,17 +24,12 @@ switch ($action) {
       // Génération aléatoire d'une clé
       $cle = md5(microtime(TRUE)*100000);
 
+      $sql = ClientRepository::updateCle($cle, $login);
 
-      // Insertion de la clé dans la base de données (à adapter en INSERT si besoin)
-      $sql = $db->prepare("UPDATE client SET cle= :cle WHERE adresse_mail like :mail ");
-      $sql->bindParam(':cle', $cle);
-      $sql->bindParam(':mail', $login);
-
-      $sql->execute();
       // Préparation du mail contenant le lien d'activation
       $destinataire = $login;
       $sujet = "Activer votre compte" ;
-      $entete = "From: connexion@site-e-commerce.com" ;
+      $entete = "From: register@site-e-commerce.com" ;
       
       // Le lien d'activation est composé du login(log) et de la clé(cle)
       $message = 'Bienvenue sur notre site de vente de batteries externes,
@@ -46,8 +43,7 @@ switch ($action) {
       Ceci est un mail automatique, Merci de ne pas y répondre.';
             
       mail($destinataire, $sujet, $message, $entete) ; // Envoi du mail
-      //echo '<a href="./index.php?uc=login&mail='.urlencode($login).'">Cliquer ici pour valider votre compte</a>'; 
-      // Update du confirm_mail dans la base de données (à adapter en INSERT si besoin)
+      header('Location: ./index.php?uc=register&action=enregistrement&mail_send=true');
       break;
 
    case 'validateConnexion':
@@ -57,21 +53,22 @@ switch ($action) {
       if(isset($_POST['connexion'])) {
          if(!empty($_POST['adresse_mail']) && !empty($_POST['mdp'])){
             $mail = htmlspecialchars($_POST['adresse_mail']);
-            $mdp = sha1($_POST['mdp']);
+            $mdp = hash('sha256', $_POST['mdp']);
 
-            $recupUser = $db->prepare('SELECT * FROM client WHERE adresse_mail = ? AND mdp = ? AND confirm_mail = 1');
-            $recupUser->execute(array($mail, $mdp));
+            $recupUser = ClientRepository::recupUser($mail, $mdp);
             
             if($recupUser->rowCount() > 0) {
+               $recupUser->setFetchMode(PDO::FETCH_CLASS, 'Client'); 
                $info = $recupUser->fetch();
-               $_SESSION['adresse_mail'] = $info['adresse_mail'];
-               $_SESSION['mdp'] = $info['mdp'];
-               $_SESSION['id'] = $info['idClient'];
-               $_SESSION['isAdmin'] = $info['isAdmin'];
+               $_SESSION['adresse_mail'] = $info->getAdresseMail();
+               $_SESSION['mdp'] = $info->getMdp();
+               $_SESSION['id'] = $info->getId();
+               $_SESSION['isAdmin'] = $info->getIsAdmin();
                
                header('Location: ./index.php?uc=validation&action=connexion');
                
             } else {
+               header('Location: ./index.php?uc=login&action=demandeConnexion&error=true');
                echo "Votre mot de passe ou adresse mail est incorrecte";
             }
 
@@ -82,19 +79,33 @@ switch ($action) {
    break;
     
    case 'validate_mail':
-      $req = $db->prepare('SELECT cle FROM client WHERE adresse_mail = :adresse_mail');
-      $req->bindParam(':adresse_mail', $_GET['mail']);
-      $req->execute();
+      $cle = ClientRepository::recupCle($_GET['mail']);
 
-      $cle = $req->fetch(PDO::FETCH_ASSOC);
+      if($cle->getCle() == $_GET['cle']){
+         $req = ClientRepository::updateConfirmMail(1, $_GET['mail']);
 
-      var_dump($cle);
-      echo 'tot';
-      if($cle['cle'] == $_GET['cle']){
-         $req = $db->prepare("UPDATE client SET confirm_mail=1 WHERE adresse_mail like :adresse_mail");
-         $req->bindParam(':adresse_mail', $_GET['mail']);
-         $req->execute();
-         header('Location: ./index.php?uc=login&action=demandeConnexion');
+         if(isset($_GET['cle']) && isset($_GET['mail'])){
+            $cle = $_GET['cle'];
+            $login = $_GET['mail'];
+            $rows = ClientRepository::selectUser($cle, $login);
+
+            if ($rows == true){
+               $req = ClientRepository::updateConfirmMail(TRUE, $_GET['mail']);
+
+               if ($req == TRUE) {
+                  echo $msg;
+                  header('Location: ./index.php?uc=login&action=demandeConnexion&mail_confirm=true&login='.$login.'');
+                  exit;
+               }
+               else{
+                  echo " Une erreur s'est produite lors de la confirmation du mail ";
+               }
+            }
+            else{
+                echo " Le lien de confirmation n'est pas valide ";
+            }
+         }
+
       } else {
          echo "Votre mail n'a pas été validée";
       }
@@ -103,8 +114,6 @@ switch ($action) {
    default:
       include 'view/login.php';
       break;
-
-   $db = null; // fermer la connexion   
 
 }
 

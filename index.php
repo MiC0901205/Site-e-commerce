@@ -39,6 +39,18 @@ switch ($uc) {
     case 'produit':
         include 'controller/produitController.php';
         break;
+
+    case 'infoClient':
+        include 'controller/infoClientController.php';
+        break;
+
+    case 'panier':
+        include 'controller/panierController.php';
+        break;
+
+    case 'admin':
+        include 'controller/adminController.php';
+        break;
 }
 
 ?>

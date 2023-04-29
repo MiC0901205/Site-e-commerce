@@ -195,3 +195,133 @@ a {
     width: 100%;
     height: 450px;
 }
+
+#tooltip {
+    position: relative;
+    cursor:pointer;
+}
+
+#tooltipText {
+    position:absolute;
+    left: 52%;
+    top:0%;
+    transform: translateX(-50%);
+    background-color: rgb(65, 2, 65);
+    color: #fff;
+    white-space: nowrap;
+    padding: 10px 15px;
+    border-radius: 7px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#tooltipText::before{
+    content: "";
+    position: absolute;
+    top: -60%;
+    right: 30%;
+    transform: rotate(180deg);
+    border: 15px solid;
+    border-color: rgb(59, 1, 59) #0000 #0000 #0000;
+}
+
+#tooltip:hover #tooltipText {
+    top: 100%;
+    visibility: visible;
+    opacity: 1;
+
+}
+
+#tooltipTextConnexion {
+    position:absolute;
+    left: 50%;
+    top:0;
+    transform: translateX(-50%);
+    background-color: rgb(65, 2, 65);
+    color: #fff;
+    white-space: nowrap;
+    padding: 10px 15px;
+    border-radius: 7px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#tooltipTextConnexion::before{
+    content: "";
+    position: absolute;
+    top: -60%;
+    right: 35%;
+    transform: rotate(180deg);
+    border: 15px solid;
+    border-color: rgb(59, 1, 59) #0000 #0000 #0000;
+}
+
+#tooltip:hover #tooltipTextConnexion {
+    top: 100%;
+    visibility: visible;
+    opacity: 1;
+
+}
+
+#tooltipTextCompte {
+    position:absolute;
+    left: -50%;
+    top: 20%;
+    transform: translateY(-25%);
+    background-color: rgb(65, 2, 65);
+    color: #fff;
+    white-space: nowrap;
+    padding: 10px 15px;
+    border-radius: 7px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#tooltipTextCompte::before{
+    content: "";
+    position: absolute;
+    top: -60%;
+    right: 28%;
+    transform: rotate(180deg);
+    border: 15px solid;
+    border-color: rgb(59, 1, 59) #0000 #0000 #0000;
+}
+
+#tooltip:hover #tooltipTextCompte {
+    top: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.btn1 {
+    background-color: transparent;
+    top: 17%;
+    left: 5%;
+    position: absolute;
+    color:black;
+    height: 50%;
+    width: 20%;
+}
+
+.btn2 {
+    background-color: transparent;
+    top: 19%;
+    left: 40%;
+    position: absolute;
+    color:black;
+    height: 51%;
+    width: 19%;
+}
+
+.btn3 {
+    background-color: transparent;
+    top: 19%;
+    left: 72%;
+    position: absolute;
+    color:black;
+    height: 52%;
+    width: 25%;
+}

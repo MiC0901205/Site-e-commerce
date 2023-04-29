@@ -4,7 +4,7 @@ body{
 #container{
     width:400px;
     margin:0 auto;
-    margin-top:10%;
+    margin-top:5%;
 }
 /* Bordered form */
 form {
@@ -18,6 +18,8 @@ form {
     width: 38%;
     margin: 0 auto;
     padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 /* Full-width inputs */
@@ -61,7 +63,6 @@ input[type=submit]:hover {
 .psw {
     font-size: 1em;
     background:transparent;
-    color: #f9f9f9;
     border: 2px solid #7a7a7a;
     border-radius: 5px;
     padding: 1rem 1.2rem;
@@ -76,15 +77,13 @@ label .password-icon {
     display: flex;
     align-items: center;
     position: absolute;
-    top: 50%;
+    top: 55px;
     transform: translateY(-50%);
     width: 20px;
     color:black;
     transition: all 0.2s;
-    right: -385px;
+    right: 10px;
 }
-
-
 
 label .password-icon .feather-eye-off {
     display: none;
@@ -95,25 +94,22 @@ label .password-icon:hover {
     color: #ff4754;
 }
 
-label .password-icon-conf {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 42%;
-    transform: translateY(-50%);
-    width: 20px;
-    color:black;
-    transition: all 0.2s;
-    right: -385px;
-}
-
-
-
-label .password-icon-conf .feather-eye-off {
+.erreurConnexion {
+    text-align: center;
+    color: red;
     display: none;
 }
 
-label .password-icon-conf:hover {
-    cursor: pointer;
-    color: #ff4754;
+#inscription{
+    text-align: center;
+}
+
+.annuler {
+    padding-left: 24%;
+    padding-right: 24%;
+}
+
+.btn-annuler-modif {
+    padding-left: 42%;
+    padding-right: 42%;
 }

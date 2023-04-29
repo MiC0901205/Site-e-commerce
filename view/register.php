@@ -4,12 +4,29 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/register.css" media="screen" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="../css/authentification.css" media="screen" type="text/css"/>
         <title>Inscription</title>
     </head>
-    <body>      
+    <body>
         <div id="container">
         <form method="POST" action="../index.php?uc=register&action=enregistrement">
+        <?php
+            if(isset($_GET['mail_send'])) {
+                if(($_GET['mail_send']) == true) {
+                    echo '<div class="alert alert-info" id="mail" style="display:block" role="alert">
+                    Un mail vous a été envoyé, veuillez vérifier votre boite mail
+                    </div>';
+                }
+            }
+            if(isset($_GET['error'])) {
+                echo "<div class='alert alert-danger' id='mail' style='display:block' role='alert'>
+                        Un compte est déjà lié à l'adresse mail rentrée
+                    </div>";
+            }
+        ?>
+            
         <h1>Inscription</h1>
             <div class="infosNP">
                 <div class="Nom">
@@ -87,7 +104,7 @@
                 }
             ?>
             <label><b>Telephone</b></label>
-            <input type="text" maxlength="10" minlength = "10" placeholder="Votre numéro de téléphone" name="tel" value="<?php if(isset($tel)){ echo $tel; }?>" >
+            <input id="telephone" type="text" maxlength="14" minlength ="14" placeholder="Votre numéro de téléphone" name="tel" value="<?php if(isset($tel)){ echo $tel; }?>" >
             
             <?php
                 if (isset($er_mdp)){
@@ -97,20 +114,19 @@
                 }
             ?>
 
-            <script src="./js/register.js"></script> 
             <label class="password_label"><b>Mot de passe</b>
                 <input class="psw" type="password" placeholder="Mot de passe*" name="mdp" value="<?php if(isset($mdp)){ echo $mdp; }?>" required>
                 <div class="password-icon">
-                    <i data-feather="eye" onclick="change()"></i>
-                    <i data-feather="eye-off" onclick="change()"></i>
+                    <i data-feather="eye" class="eye"></i>
+                    <i data-feather="eye-off" class="eyeOff"></i>
                 </div>
             </label>
 
             <label class="password_label"><b>Confirmer le mot de passe</b>
             <input class="psw" type="password" placeholder="Confirmer le mot de passe" name="confmdp" required>
-                <div class="password-icon-conf">
-                    <i data-feather="eye" onclick="change()"></i>
-                    <i data-feather="eye-off" onclick="change()"></i>
+                <div class="password-icon">
+                    <i data-feather="eye" class="eye"></i>
+                    <i data-feather="eye-off" class="eyeOff"></i>
                 </div>
             </label>
 
@@ -119,9 +135,11 @@
             <script>
                 feather.replace();
             </script>
-            
+
             <input type="submit" id="inscription" value="S'inscrire">
+            <a href="../index.php?uc=accueil"><input class="btn btn-secondary annuler" type="button" value="Annuler l'enregistrement"/></a>
             </form>
+            <script src="../js/authentification.js"></script>
         </div>
     </body>
 </html>

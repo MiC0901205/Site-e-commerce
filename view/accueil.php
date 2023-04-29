@@ -4,7 +4,7 @@ include 'navbar.php';
 	<link rel="stylesheet" href="./css/principal.css">
 	<div class="desc">
 		<div class="moitiePage">
-			<h2 style="margin-bottom:20px !important"> Qu'est ce que c'est ?</h2>
+			<h2 style="margin-bottom:20px !important"> Qu'est ce qu'une batterie externe ?</h2>
 			<p>
 				Une batterie externe est un dispositif de stockage de l’électricité transportable pour un usage
 				personnel.
@@ -21,7 +21,7 @@ include 'navbar.php';
 		</div>
 
 		<div class="finPage">
-			<h2 style="margin-bottom:20px !important"> Risques </h2>
+			<h2 style="margin-bottom:20px !important"> Prévention d'utilisation ? </h2>
 			<p>
 				Il existe un risque faible, non négligeable pour autant, que la batterie prenne feu ou explose. Quelques
 				cas d’explosion de batterie ont été recensés

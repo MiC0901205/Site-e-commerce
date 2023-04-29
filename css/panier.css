@@ -2,8 +2,8 @@
 h1
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: blue;
-    background-color: aqua;
+    color: white;
+    background-color: rgb(71, 1, 71);
     text-align: center;
 }
 
@@ -71,6 +71,7 @@ body
 
 .col-sm-4{
     margin-bottom: 20px;
+    margin-left: 20px;
 }
 
 

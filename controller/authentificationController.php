@@ -1,5 +1,6 @@
 <?php
-require_once('./model/login_db.php');
+require_once('./model/Client.php');
+require_once('./repository/ClientRepository.php');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
 
@@ -23,6 +24,10 @@ switch ($action) {
         }
     break;
     
+    case 'demandeRegister' :
+        include './view/register.php';
+    break;
+
     case 'enregistrement':
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -79,12 +84,8 @@ switch ($action) {
                     $valid = false;
     
                 }else{
-                    $req_mail = $db->prepare("SELECT adresse_mail FROM client WHERE adresse_mail = :mail");
-                    $req_mail->bindParam(':mail', $mail);
-                    $req_mail->execute();
-                    $req = $req_mail->fetch();
+                    $req = ClientRepository::selectMail($mail);
                     if($req <> ""){
-                        echo $valid;
                         $valid = false;
                     }
                 }
@@ -97,7 +98,7 @@ switch ($action) {
                     $valid = false;
                 }              
     
-                if(!preg_match('/[0-9]{10}/', $tel)){
+                if(!preg_match('/^[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$/', $tel)){
                     $valid = false;
                 }  
     
@@ -109,13 +110,11 @@ switch ($action) {
                 }
     
                 if($valid){
-                    
-                    $mdp = sha1($mdp); 
+                   
+                    $mdp = hash('sha256', $_POST['mdp']);
                     
                     try {
-                        $sql= $db->prepare("INSERT INTO `client` (`nom`, `prenom`, `adresse`, `adresse_mail`, `confirm_mail`, `cle`, `ville`, `cp`, `tel`, `mdp`) VALUES (:nom, :prenom, :adresse, :adresse_mail, :confirm_mail, :cle, :ville, :cp, :tel, :mdp)");
-                        $sql->execute(array('nom' => $nom, 'prenom' => $prenom, 'adresse' => $adresse, 'adresse_mail' => $mail, 'confirm_mail' => 0, 'cle' => '', 'ville' => $ville, 'cp' => $cp, 'tel' => $tel, 'mdp' => $mdp));
-                    
+                        $sql = ClientRepository::insertClient($nom, $prenom, $adresse, $mail, $ville, $cp, $tel, $mdp); 
                     } catch (Exception $ex){
                         header('Location: location: index.php?uc=login&action=demandeConnexion');
                         exit;
@@ -124,42 +123,17 @@ switch ($action) {
                     if (true) {
                         echo "New record created successfully";
                         header("Location: ./index.php?uc=mail&action=confirm_mail&adresse_mail=$mail");
-                        if(isset($_GET['cle']) && isset($_GET['log'])){
-                            echo "<p style='color:green'> Le compte a bien était créé </p>";
-                            $cle = $_GET['cle'];
-                            $login = $_GET['log'];
-                            $sql = $db->prepare("SELECT * From client Where cle = :cle And adresse_mail = :adresse_mail");
-                            $sql->bindParam(':cle', $cle);
-                            $sql->bindParam(':adresse_mail',  $login);
-                            $sql->execute();
-                            $rows = $sql->fetch(PDO::FETCH_ASSOC);
-                            if ($rows == 1){
-                                $msg = "Votre adresse mail a bien était confirmée";
-                                $sql = $db->prepare("UPDATE client SET confirm_mail = TRUE WHERE adresse_mail like :adresse_mail");
-                                $sql->bindParam(':adresse_mail', $login);
-                                $sql->execute();
-                                if ($db->query($sql) === TRUE) {
-                                    echo $msg;
-                                }
-                                else{
-                                    echo " Une erreur s'est produite lors de la confirmation du mail ";
-                                }
-                            }
-                            else{
-                                echo " Le lien de confirmation n'est pas valide ";
-                            }
-                        }
-                        // exit;
                     } else {
                         echo $rows;
                         echo "Error: l'insertion n'a pas été faite";
                     }
                 } else {
-                    header('Location: ./view/register.php');
+                    header('Location: ./index.php?uc=register&action=demandeRegister&error=true');
                 }
             }
         } else {
-            header('Location: ./view/register.php');
+            $etatMail = $_GET['mail_send'];
+            header('Location: ./view/register.php?mail_send='.$etatMail);
         }
     break;
 
