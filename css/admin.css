@@ -68,14 +68,6 @@ body {
     color: #ffffff;
   }
   
-  .ajouter-produit {
-    text-align: right;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    width: 10%;
-    margin-left: 10%;
-  }
-  
   .produit {
     display: flex;
     align-items: center;
@@ -128,12 +120,6 @@ body {
     color: #fff;
   }
   
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #fff;
-  }
-  
   .btn-warning {
     background-color: #ffc107;
     border-color: #ffc107;
@@ -148,4 +134,55 @@ body {
   .btn-details {
     background-color: #f0ad4e;
     border-color: #f0ad4e;
+  }
+  
+  .ajouter-produit {
+    text-align: right;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 15%;
+    margin-left: 10%;
+  }
+
+  .supprimer-produit {
+    text-align: right;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 15%;
+    margin-left: 10%;
+
+  }
+
+  .modifier-produit {
+    text-align: right;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 15%;
+    margin-left: 10%;
+    color:grey;
+  }
+
+  .supprimer {
+    background-color: grey;
+    border-color: grey;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .modifier {
+    background-color: grey;
+    border-color: grey;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .ajouter {
+    background-color: blue;
+    border-color: blue;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .btn-action {
+    margin-left: 12%;
   }

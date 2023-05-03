@@ -14,7 +14,7 @@
         <form action="./index.php?uc=infoClient&action=verifInfo" method="post">
         <center><h2>Modifier vos données personnelles</h2></center>
             <?php  
-                if(isset($_GET['message'])) {
+                if(isset($_GET['modif']) && $_GET['modif'] == true) {
                     echo '<div class="alert alert-success" role="alert">
                     Vos données ont bien été modifiées
                     </div>';
@@ -88,7 +88,7 @@
             <label><b>Telephone</b></label>
             <input type="text" maxlength="14" minlength = "14" placeholder="Votre numéro de téléphone" name="tel" value="<?php if(isset($tel)){ echo $tel; }?>" >
             
-            <input type="submit" id="inscription" value="Valider">
+            <input type="submit" id="modif" value="Valider">
             <a href="../index.php?uc=accueil"><input class="btn btn-secondary btn-annuler-modif" type="button" value="Annuler"/></a>
         </form>
         </div>

@@ -2,6 +2,8 @@
 
 require_once('./model/login_db.php');
 require_once('./repository/ClientRepository.php');
+require_once('./model/Client.php');
+
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
 
@@ -13,14 +15,14 @@ switch ($action) {
             session_start();
         } 
 
-        $sql = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
+        $Client = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
 
-        $nom = $sql[0];
-        $prenom = $sql[1];
-        $adresse = $sql[2];
-        $ville = $sql[3];
-        $cp = $sql[4];
-        $tel = $sql[5];
+        $nom = $Client->getNom();
+        $prenom = $Client->getPrenom();
+        $adresse = $Client->getAdresse();
+        $ville = $Client->getVille();
+        $cp = $Client->getCp();
+        $tel = $Client->getTel();
 
         include 'view/infosclient.php';
     break;
@@ -82,11 +84,19 @@ switch ($action) {
                 
                 if($valid)
                 {   
-                    $sql = ClientRepository::updateUser($nom, $prenom, $adresse, $ville, $cp, $tel, $_SESSION['adresse_mail']);
+                    $client = new Client();
+                    $client->setNom($nom);
+                    $client->setPrenom($prenom);
+                    $client->setAdresse($adresse);
+                    $client->setVille($ville);
+                    $client->setCp($cp);
+                    $client->setTel($tel);
+                    $client->setAdresseMail($_SESSION['adresse_mail']);
+
+                    $sql = ClientRepository::updateUser($client);
 
                     if ($sql == TRUE) {
-                        $msg = "Vos données ont été mis à jour";
-                        header("Location: ./index.php?uc=infoClient&action=info&message='.$msg.'");
+                        header("Location: ./index.php?uc=infoClient&action=info&modif=true");
                     } else {
                         echo "Error: La modification n'a pas été faite";
                     }
@@ -95,14 +105,15 @@ switch ($action) {
         } else {
             try{ 
 
-                $sql = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
+                $Client = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
 
-                $nom = $sql['nom'];
-                $prenom = $sql['prenom'];
-                $adresse = $sql['adresse'];
-                $ville = $sql['ville'];
-                $cp = $sql['cp'];
-                $tel = $sql['tel'];         
+                $nom = $Client->getNom();
+                $prenom = $Client->getPrenom();
+                $adresse = $Client->getAdresse();
+                $ville = $Client->getVille();
+                $cp = $Client->getCp();
+                $tel = $client->getTel();
+ 
 
             } catch (Exception $ex) {
                 die('Erreur : ' . $ex->getMessage()); 

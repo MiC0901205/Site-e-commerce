@@ -15,17 +15,18 @@ switch ($action) {
         $pageRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) &&($_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0' ||  $_SERVER['HTTP_CACHE_CONTROL'] == 'no-cache'); 
 
         if(isset($_SESSION['adresse_mail'])){
-            $sql = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
+            $Client = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
 
-            $nom = $sql[0];
-            $prenom = $sql[1];
+            $nom = $Client->getNom();
+            $prenom = $Client->getPrenom();
 
         } else {
             echo "vous devez vous connecter pour voir votre panier"; 
             exit;
         }
-        
-        if(($pageRefreshed != 1)){
+
+        if((!$pageRefreshed)){
+
             if(isset($_GET['id'])){
                 if(!isset($_SESSION['panierListe']['produit'])) {
                     $_SESSION['panierListe']['produit'] = array();
@@ -40,6 +41,7 @@ switch ($action) {
                     if (array_key_exists($_GET['removeid'], $_SESSION['panierListe']['produit'])){
                         $_SESSION['panierListe']['produit'][$_GET['removeid']] =  $_SESSION['panierListe']['produit'][$_GET['removeid']] - 1;
                         if ($_SESSION['panierListe']['produit'][$_GET['removeid']] <= 0){
+                            echo 'je suis ici maintenant';
                             unset($_SESSION['panierListe']['produit'][$_GET['removeid']]);
                         }
                     } 

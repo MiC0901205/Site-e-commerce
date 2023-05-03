@@ -1,21 +1,57 @@
-// Récupérer la sélection de l'utilisateur
-var selectedBatterie = document.getElementById("batterie").value;
+// Filtrage par type de batterie
+const selectTypeBatterie = document.getElementById("typeProduit")
+selectTypeBatterie.addEventListener("change", function() {
+    const typeProduit = this.value;
+    const produits = document.querySelectorAll("tbody tr");
 
-// Récupérer tous les produits
-var produits = document.getElementsByClassName("produit");
+    produits.forEach(function(produit) {
+    const typeBatterieProduit = produit.querySelector("td:nth-child(8)").textContent;
 
-// Parcourir tous les produits et les cacher s'ils ne correspondent pas à la sélection de l'utilisateur
-for (var i = 0; i < produits.length; i++) {
-  var produit = produits[i];
-  var batterie = produit.getElementsByClassName("batterie")[0].textContent;
-  if (selectedBatterie && batterie !== selectedBatterie) {
-    produit.style.display = "none";
-  } else {
-    produit.style.display = "flex";
-  }
+    if (typeProduit === "" || typeProduit === typeBatterieProduit) {
+        produit.style.display = "table-row";
+    } else {
+        produit.style.display = "none";
+    }
+    });
+});
+
+function updateButtons() {
+    var checkedCount = 0;
+    var checkboxes = document.querySelectorAll('input[type=checkbox]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            checkedCount++;
+            for (var j = 0; j < checkboxes.length; j++) {
+                if (j !== i) {
+                    checkboxes[j].checked = false;
+                }
+            }
+        }
+    }
+    var deleteButton = document.getElementById('delete-button');
+    var editButton = document.getElementById('edit-button');
+    if (checkedCount > 0) {
+        deleteButton.disabled = false;
+        editButton.disabled = false;
+        editButton.style.backgroundColor = 'green';
+        deleteButton.style.backgroundColor = 'red';
+        editButton.style.borderColor = 'green';
+        deleteButton.style.borderColor = 'red';
+    } else {
+        deleteButton.disabled = true;
+        editButton.disabled = true;
+        editButton.style.backgroundColor = 'grey';
+        deleteButton.style.backgroundColor = 'grey';
+        editButton.style.borderColor = 'grey';
+        deleteButton.style.borderColor = 'grey';
+    }
 }
 
+var deleteButton = document.getElementById('delete-button');
+deleteButton.onclick = function() {
+    let isDelete = confirm("Etes-vous sûr de vouloir supprimer ce produit ?");
 
+}    
 
 
 

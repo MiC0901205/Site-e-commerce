@@ -18,7 +18,7 @@
                       $mail_confirm = $_GET['mail_confirm'];
                       if($mail_confirm == true) {
                         echo '<div class="alert alert-success" role="alert">
-                                Votre adresse mail a bien était confirmée
+                                Votre adresse mail a bien été confirmée
                             </div>';
                       } else {
                         echo '

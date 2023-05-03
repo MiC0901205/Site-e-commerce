@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
 <?php
 	if (session_status() === PHP_SESSION_NONE) {
 		session_start();
 	}
 ?>
+<!DOCTYPE html>
+<html>
 <head>
 	<title>Site en ligne de batteries externes </title>
 	<meta charset="utf-8">

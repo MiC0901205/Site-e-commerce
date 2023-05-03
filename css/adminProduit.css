@@ -1,0 +1,72 @@
+h1, h2 {
+    color: #444444;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+form {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+
+input[type="text"], input[type="number"], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0069d9;
+}
+
+.error {
+    color: #ff0000;
+    margin-top: 5px;
+}
+
+.label-dimension {
+    margin-top:2%; 
+    margin-bottom:2%; 
+    color:red;
+  }
+
+  .label-info {
+    margin-bottom:2%; 
+    color:red;
+  }
+
+  .infos_supp {
+    margin-bottom: 8%;
+  }
+
+  .btn-valider-modif {
+    background-color: green;
+    height: 7%;
+    border-radius: 10px;
+  }

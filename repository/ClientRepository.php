@@ -101,17 +101,17 @@ class ClientRepository {
         return $sql;
     }
 
-    public static function updateUser($nom, $prenom, $adresse, $ville, $cp, $tel, $mail) {
+    public static function updateUser($client) {
         $db = loginDB();
-
-        $sql= $db->prepare(" UPDATE `client` SET nom = :nom, prenom = :prenom, adresse = :adresse, ville = :ville, cp = :cp, tel = :tel WHERE adresse_mail = :mail"); 
-        $sql->bindParam(':nom', $nom);
-        $sql->bindParam(':prenom', $prenom);
-        $sql->bindParam(':adresse', $adresse);
-        $sql->bindParam(':ville', $ville);
-        $sql->bindParam(':cp', $cp);
-        $sql->bindParam(':tel', $tel);
-        $sql->bindParam(':mail', $mail);
+        
+        $sql= $db->prepare("UPDATE `client` SET nom = :nom, prenom = :prenom, adresse = :adresse, ville = :ville, cp = :cp, tel = :tel WHERE adresse_mail = :mail"); 
+        $sql->bindParam(':nom', $client->getNom());
+        $sql->bindParam(':prenom', $client->getPrenom());
+        $sql->bindParam(':adresse', $client->getAdresse());
+        $sql->bindParam(':ville', $client->getVille());
+        $sql->bindParam(':cp', $client->getCp());
+        $sql->bindParam(':tel', $client->getTel());
+        $sql->bindParam(':mail', $client->getAdresseMail());
 
         $sql->execute();
 
@@ -126,22 +126,12 @@ class ClientRepository {
         $sql = $db->prepare('SELECT nom, prenom, adresse, ville, cp, tel FROM client WHERE adresse_mail = :mail');   
         $sql->bindParam(':mail', $mail);
         $sql->execute();
-        $sql->setFetchMode(PDO::FETCH_ASSOC); 
+        $sql->setFetchMode(PDO::FETCH_CLASS, 'Client'); 
         $req = $sql->fetch();
 
-        $tab = [
-            // La requête a renvoyé au moins une ligne, on peut accéder aux valeurs du tableau $req
-            $req['nom'],
-            $req['prenom'],
-            $req['adresse'],
-            $req['ville'],
-            $req['cp'],
-            $req['tel']
-        ];
-        
         $db = null;
 
-        return $tab;
+        return $req;
     }
 
     public static function historiqueCmd($mail) {
