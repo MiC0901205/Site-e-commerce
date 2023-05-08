@@ -1,7 +1,7 @@
 
 <?php
-include_once './view/navbar.php';
-require_once('./repository/ClientRepository.php');
+include 'navbar.php';
+include './repository/ProduitRepository.php';
 ?>
 <link rel="stylesheet" href="../css/historique_cmd.css">
 			<table>
@@ -17,7 +17,7 @@ require_once('./repository/ClientRepository.php');
 			<tbody>
                 <?php 
                     foreach($sql as $uneCommande){
-                        $result_Produit = ClientRepository::RecupProdByCmd($uneCommande);
+                        $result_Produit = ProduitRepository::RecupProdByCmd($uneCommande);
 
                         echo "<tr>
                             <th scope='row'> ".$uneCommande['idCommande']."</th>

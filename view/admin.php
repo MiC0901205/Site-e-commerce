@@ -21,6 +21,11 @@ require_once('./repository/ProduitRepository.php');
             </div>'; 
         }
     }
+    if(isset($_GET['removeid'])) {
+        echo "<div class='alert alert-danger' role='alert'>
+            La suppression du produit à l'id ".$_GET['removeid']."
+        </div>"; 
+    }
     ?>
 
     <div id="btn-action" class="btn btn-action" style="display:flex;">

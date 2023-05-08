@@ -63,4 +63,5 @@ switch ($action) {
 
     default: 
         include './view/accueil.php';
+    break;
 }

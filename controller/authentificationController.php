@@ -153,6 +153,10 @@ switch ($action) {
             header("Location: ./index.php?uc=accueil");
         }
     break;
+
+    default :
+        include './index.php';
+    break;
 }
 
 ?>

@@ -70,3 +70,24 @@ button[type="submit"]:hover {
     height: 7%;
     border-radius: 10px;
   }
+
+  #modif {
+    margin-left: 1.5%;
+    width: 97%;
+    margin-bottom: 1.5%;
+  }
+  
+  #annul {
+    width: 100%;
+  }
+
+  #annulerAjout {
+    width: 100%;
+  }
+
+  #valider {
+    margin-top: 2%;
+    margin-left: 1.5%;
+    width: 100%;
+    margin-bottom: 1.5%;
+  }

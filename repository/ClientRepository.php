@@ -1,5 +1,4 @@
 <?php
-
 require_once('./model/login_db.php');
 require_once('./model/Client.php');
 
@@ -147,16 +146,18 @@ class ClientRepository {
         return $sql;
     }
 
-    public static function RecupProdByCmd($uneCommande) {
+    public static function RecupIdUser($mail) {
         $db = loginDB();
 
-        $sql = $db->prepare('SELECT nom, qte, prix FROM commande_produit C JOIN commandes co on co.idCommande = C.idCommande JOIN produit p on p.idProduit = C.idProduit WHERE co.idCommande = :idCmd');  
-        $sql->bindParam(':idCmd', $uneCommande['idCommande']);
+        $sql = $db->prepare ("SELECT idClient FROM client Where adresse_mail = :mail");
+        $sql->bindParam(':mail', $mail);
+        // exécute la requête 
         $sql->execute();
+        $sql->setFetchMode(PDO::FETCH_CLASS, 'Client'); 
+        $req = $sql->fetch();
 
         $db = null;
 
-        return $sql;
-
+        return $req;
     }
 }

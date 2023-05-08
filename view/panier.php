@@ -5,7 +5,7 @@ require_once('./repository/ProduitRepository.php');
 ?>
 <link rel="stylesheet" href="../css/panier.css">
 <div id="panier"> 
-    <form action="../paiement.php" method="POST">
+    <form action="./index.php?uc=paiement&action=paiement" method="POST">
         <h1>Panier</h1>
         <div id="commandes">
             <?php

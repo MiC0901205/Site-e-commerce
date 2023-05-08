@@ -51,7 +51,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light">
 		<!-- couleur et style -->
 		<div class="container-fluid d-flex">
-			<a class="navbar-brand" href="index.php">Site de batteries externes</a>
+			<a class="navbar-brand" href="../index.php">Site de batteries externes</a>
 			<!-- nom du site gauche navbar -->
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
 				aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,7 +104,7 @@
 					</li>
 				</ul>
 			</div>
-			<form action="recherche.php" method="GET" class="d-flex search">
+			<form action="./index.php?uc=search&action=search" method="POST" class="d-flex search">
 				<input class="form-control me-2" name="search" type="search" placeholder="Rechercher" aria-label="Search">
 				<button class="btn btn-outline-success" type="submit">Rechercher</button>
 			</form>

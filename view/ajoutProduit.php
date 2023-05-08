@@ -86,6 +86,10 @@
             <option value="4">Cable de recharge</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary" style="margin-top:2%;">Ajouter le produit</button>
+        
+        <div class="form-group row">
+            <input type="submit" class="btn btn-primary btn-block" id="valider" value="Valider">
+        </div>   
+        <a href="../index.php?uc=admin&action=admin"><input class="btn btn-secondary btn-block" id="annulerAjout" type="button" value="Annuler"/></a>    
     </form>
 </body>

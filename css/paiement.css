@@ -1,5 +1,5 @@
 body{
-    background:black;
+    background:rgb(82, 1, 82);
 }
 #container{
     width:400px;
@@ -46,30 +46,28 @@ input[type=submit]:hover {
     border: 1px solid #53af57;
 }
 
-#Annuler{
+#annuler{
     background-color: gray;
     color : white;
     padding: 14px 20px;
     margin: 8px 0;
-    margin-left: 20px;
     border: none;
     cursor: pointer;
     width: 100%;
     text-align: center;
 }
 
-#Annuler:hover{
+#annuler:hover{
     background-color: white;
-    margin-left: 20px;
     color : gray;
     border: 1px solid gray;
 }
 
-#Annuler>a{
+#annuler>a{
     color:white;
 }
 
-#Annuler:hover>a{
+#annuler:hover>a{
     color:gray;
     font-weight: 300;
 }
@@ -121,3 +119,15 @@ a:active {
 .Messagebox{
     border: 1px solid red !important;
 }
+
+header {
+    color: white;
+    margin-left: 39%;
+    margin-bottom: -8%;
+    margin-top: 2%;
+}
+
+img {
+    margin-left: -4%;
+}
+

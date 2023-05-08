@@ -12,8 +12,14 @@ switch ($action) {
         include './view/admin.php';
     break;
     
+    case 'supprimerProduit':
+        ProduitRepository::deleteProduit($_GET['idProduit']);
+        header('Location: ./index.php?uc=admin&action=admin&removeid='.$_GET['idProduit'].'');
+    break;
+
     case 'ajoutProduit':
         include './view/ajoutProduit.php';
+    break;
 
     case 'verificationAjout':
 
@@ -110,6 +116,15 @@ switch ($action) {
         $seuilAlert = $Produit->getSeuilAlert();
         $idType = $Produit->getIdType();
 
+        $types = array(
+            1 => "Batterie",
+            2 => "Souris",
+            3 => "Clavier",
+            4 => "Cable de recharge"
+        );
+        
+        $type = isset($types[$idType]) ? $types[$idType] : "";
+        
         include './view/modifProduit.php';
         break;
     
@@ -246,5 +261,9 @@ switch ($action) {
                 die('Erreur : ' . $ex->getMessage()); 
             } 
         }
-    break;  
+    break; 
+    
+    default :
+        include './view/admin.php';
+    break;
 }

@@ -20,144 +20,155 @@
                     </div>';
                 }      
             ?>
-            <div class="infosProduit">
-                <div class="Nom">
-                    <?php                      
-                        if (isset($er_nom)){
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="Nom">
+                        <?php                      
+                            if (isset($er_nom)){
+                            ?>
+                                <div><?= $er_nom ?></div>
+                            <?php   
+                            }
                         ?>
-                            <div><?= $er_nom ?></div>
-                        <?php   
-                        }
-                    ?>
-                    
-                    <label><b>Nom</b></label>
-                    <input type="text" placeholder="Nom du produit" name="nom" value="<?php if(isset($nom)){ echo $nom; }?>" required>
-                </div>
+                        
+                        <label><b>Nom</b></label>
+                        <input type="text" placeholder="Nom du produit" name="nom" value="<?php if(isset($nom)){ echo $nom; }?>" required>
+                    </div>
 
-                <div class="Prix">
+                    <div class="Prix">
+                        <?php
+                            if (isset($er_prix)){
+                            ?>
+                                <div><?= $er_prix ?></div>
+                            <?php   
+                            }
+                        ?>
+                        <label><b>Prix</b></label>
+                        <input type="text" placeholder="Prix du produit" name="prix" value="<?php if(isset($prix)){ echo $prix; }?>" required>
+                    </div>   
+
                     <?php
-                        if (isset($er_prix)){
+                        if (isset($er_couleur)){
                         ?>
-                            <div><?= $er_prix ?></div>
+                            <div><?= $er_couleur ?></div>
                         <?php   
                         }
                     ?>
-                    <label><b>Prix</b></label>
-                    <input type="text" placeholder="Prix du produit" name="prix" value="<?php if(isset($prix)){ echo $prix; }?>" required>
+                    <label><b>Couleur</b></label>
+                    <input type="text" placeholder="Couleur du produit" name="couleur" value="<?php if(isset($couleur)){ echo $couleur; }?>" required>  
+
+                    <?php
+                        if (isset($er_image)){
+                        ?>
+                            <div><?= $er_image ?></div>
+                        <?php   
+                        }
+                    ?>
+                    <label><b>Image</b></label>
+                    <input type="text" placeholder="Image du produit" name="image" value="<?php if(isset($image)){ echo $image; }?>" required>  
                 </div>
-            </div>   
+                    
+                <div class="col-md-6">
 
-            <?php
-                if (isset($er_couleur)){
-                ?>
-                    <div><?= $er_couleur ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Couleur</b></label>
-            <input type="text" placeholder="Couleur du produit" name="couleur" value="<?php if(isset($couleur)){ echo $couleur; }?>" required>  
-            
+                    <?php
+                        if (isset($er_largeur)){
+                        ?>
+                            <div><?= $er_largeur ?></div>
+                        <?php   
+                        }
+                    ?>
+                    <label><b>Largeur</b></label>
+                    <input type="number" placeholder="Largeur du produit" name="largeur" value="<?php if(isset($largeur)){ echo $largeur; }?>" required>  
 
-            <?php
-                if (isset($er_image)){
-                ?>
-                    <div><?= $er_image ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Image</b></label>
-            <input type="text" placeholder="Image du produit" name="image" value="<?php if(isset($image)){ echo $image; }?>" required>  
-            
-            <?php
-                if (isset($er_largeur)){
-                ?>
-                    <div><?= $er_largeur ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Largeur</b></label>
-            <input type="number" placeholder="Largeur du produit" name="largeur" value="<?php if(isset($largeur)){ echo $largeur; }?>" required>  
+                    <?php
+                        if (isset($er_longueur)){
+                        ?>
+                            <div><?= $er_longueur ?></div>
+                        <?php   
+                        }
+                    ?>
+                    <label><b>Longueur</b></label>
+                    <input type="number" placeholder="Longueur du produit" name="longueur" value="<?php if(isset($longueur)){ echo $longueur; }?>" >
+                    
+                    <?php
+                        if (isset($er_hauteur)){
+                        ?>
+                            <div><?= $er_hauteur ?></div>
+                        <?php   
+                        }
+                    ?>
+                    <label><b>Hauteur</b></label>
+                    <input type="number" placeholder="Hauteur du produit" name="hauteur" value="<?php if(isset($hauteur)){ echo $hauteur; }?>" >
+                
+                    <?php
+                        if (isset($er_poids)){
+                        ?>
+                            <div><?= $er_poids ?></div>
+                        <?php   
+                        }
+                    ?>
+                    <label><b>Poids</b></label>
+                    <input type="number" placeholder="Poids du produit" name="poids" value="<?php if(isset($poids)){ echo $poids; }?>" >
+                </div>
 
-            <?php
-                if (isset($er_longueur)){
-                ?>
-                    <div><?= $er_longueur ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Longueur</b></label>
-            <input type="number" placeholder="Longueur du produit" name="longueur" value="<?php if(isset($longueur)){ echo $longueur; }?>" >
-            
-            <?php
-                if (isset($er_hauteur)){
-                ?>
-                    <div><?= $er_hauteur ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Hauteur</b></label>
-            <input type="number" placeholder="Hauteur du produit" name="hauteur" value="<?php if(isset($hauteur)){ echo $hauteur; }?>" >
-            
-            <?php
-                if (isset($er_poids)){
-                ?>
-                    <div><?= $er_poids ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Poids</b></label>
-            <input type="number" placeholder="Poids du produit" name="poids" value="<?php if(isset($poids)){ echo $poids; }?>" >
+                <div class="col-md-6">
+                    <?php
+                        if (isset($er_description)){
+                        ?>
+                            <div><?= $er_description ?></div>
+                        <?php   
+                        }
+                    ?>
+                    <label><b>Description</b></label>
+                    <textarea rows="10" cols="40" style="width: 100%; height: 140px;" placeholder="Description du produit" name="description"><?php if(isset($description)){ echo $description; }?></textarea>
+                </div>
 
-            <?php
-                if (isset($er_description)){
-                ?>
-                    <div><?= $er_description ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Description</b></label>
-            <input type="text" placeholder="Description du produit" name="description" value="<?php if(isset($description)){ echo $description; }?>" >
+                <div class="col-md-6">
+                    <?php
+                        if (isset($er_qteStock)){
+                        ?>
+                            <div><?= $er_qteStock ?></div>
+                        <?php   
+                        }
+                    ?>
+                    <label><b>Quantité en stock</b></label>
+                    <input type="number" placeholder="Quantité en stock du produit" name="qteStock" value="<?php if(isset($qteStock)){ echo $qteStock; }?>" >
 
-            <?php
-                if (isset($er_qteStock)){
-                ?>
-                    <div><?= $er_qteStock ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Quantité en stock</b></label>
-            <input type="number" placeholder="Quantité en stock du produit" name="qteStock" value="<?php if(isset($qteStock)){ echo $qteStock; }?>" >
+                    <?php
+                        if (isset($er_seuilAlert)){
+                        ?>
+                            <div><?= $er_seuilAlert ?></div>
+                        <?php   
+                        }
+                    ?>
+                    <label><b>Seuil d'alerte</b></label>
+                    <input type="number" placeholder="Seuil d'alerte du produit" name="seuilAlert" value="<?php if(isset($seuilAlert)){ echo $seuilAlert; }?>" >
+                </div>
 
-            <?php
-                if (isset($er_seuilAlert)){
+                <?php
+                    if (isset($er_idType)){
+                    ?>
+                        <div><?= $er_idType ?></div>
+                    <?php   
+                    }
                 ?>
-                    <div><?= $er_seuilAlert ?></div>
-                <?php   
-                }
-            ?>
-            <label><b>Seuil d'alerte</b></label>
-            <input type="number" placeholder="Seuil d'alerte du produit" name="seuilAlert" value="<?php if(isset($seuilAlert)){ echo $seuilAlert; }?>" >
-
-            <?php
-                if (isset($er_idType)){
-                ?>
-                    <div><?= $er_idType ?></div>
-                <?php   
-                }
-            ?>
-            <div class="form-group">
-                <label for="idType">Type de produit :</label>
-                <select class="form-control select" id="idType" name="idType" required>
-                <option value="">-- Sélectionnez un type --</option>
-                <option value="1">Batterie</option>
-                <option value="2">Souris</option>
-                <option value="3">Clavier</option>
-                <option value="4">Cable de recharge</option>
-                </select>
+                <div class="form-group">
+                    <label for="idType">Type de produit :</label>
+                    <select class="form-control select" id="idType" name="idType" required>
+                    <option value="">-- Sélectionnez un type --</option>
+                    <option value="0" hidden selected><?php echo $type ?></option>
+                    <option value="1">Batterie</option>
+                    <option value="2">Souris</option>
+                    <option value="3">Clavier</option>
+                    <option value="4">Cable de recharge</option>
+                    </select>
+                </div>
             </div>
 
-            <input type="submit" class="btn-valider-modif" id="modif" value="Valider">
-            <a href="../index.php?uc=admin&action=admin"><input class="btn btn-secondary btn-annuler-modif" type="button" value="Annuler"/></a>
+            <div class="form-group row">
+                <input type="submit" class="btn btn-primary btn-block" id="modif" value="Valider">
+            </div>   
+            <a href="./index.php?uc=admin&action=admin"><input class="btn btn-secondary btn-block" id="annul" type="button" value="Annuler"/></a>    
         </form>
         </div>
     </body>

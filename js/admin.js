@@ -37,6 +37,10 @@ function updateButtons() {
         deleteButton.style.backgroundColor = 'red';
         editButton.style.borderColor = 'green';
         deleteButton.style.borderColor = 'red';
+        deleteButton.onclick = () => {
+            let isDelete = confirm("Etes-vous sûr de vouloir supprimer ce produit ?");
+            location.replace('./index.php?uc=admin&action=supprimerProduit&idProduit='+ i +'');
+        }
     } else {
         deleteButton.disabled = true;
         editButton.disabled = true;
@@ -46,12 +50,6 @@ function updateButtons() {
         deleteButton.style.borderColor = 'grey';
     }
 }
-
-var deleteButton = document.getElementById('delete-button');
-deleteButton.onclick = function() {
-    let isDelete = confirm("Etes-vous sûr de vouloir supprimer ce produit ?");
-
-}    
 
 
 

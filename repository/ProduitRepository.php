@@ -120,6 +120,19 @@ class ProduitRepository {
         $db = null;
     }
 
+    public static function RecupProdByCmd($uneCommande) {
+        $db = loginDB();
+
+        $sql = $db->prepare('SELECT nom, qte, prix FROM commande_produit C JOIN commandes co on co.idCommande = C.idCommande JOIN produit p on p.idProduit = C.idProduit WHERE co.idCommande = :idCmd');  
+        $sql->bindParam(':idCmd', $uneCommande['idCommande']);
+        $sql->execute();
+
+        $db = null;
+
+        return $sql;
+
+    }
+
     public static function selectInfoProduit($id) {
         $db = loginDB();
 
@@ -137,7 +150,7 @@ class ProduitRepository {
     public static function updateProduit($produit) {
         $db = loginDB();
         
-        $sql= $db->prepare("UPDATE `client` SET Nom = :nom, Prix = :prix, Couleur = :couleur, Image = :image, Largeur = :largeur, Longueur = :longueur, Hauteur = :hauteur, Poids = :poids, description = :description, qteStock = :qteStock, seuilAlert = :seuilAlert, idType = :idType WHERE idProduit = :idProduit"); 
+        $sql= $db->prepare("UPDATE `produit` SET Nom = :nom, Prix = :prix, Couleur = :couleur, Image = :image, Largeur = :largeur, Longueur = :longueur, Hauteur = :hauteur, Poids = :poids, description = :description, qteStock = :qteStock, seuilAlert = :seuilAlert, idType = :idType WHERE idProduit = :idProduit"); 
         $sql->bindParam(':nom', $produit->getNom());
         $sql->bindParam(':prix', $produit->getPrix());
         $sql->bindParam(':couleur', $produit->getCouleur());
@@ -150,11 +163,28 @@ class ProduitRepository {
         $sql->bindParam(':qteStock', $produit->getQteStock());
         $sql->bindParam(':seuilAlert', $produit->getSeuilAlert());
         $sql->bindParam(':idType', $produit->getIdType());
+        $sql->bindParam(':idProduit', $produit->getId());
 
         $sql->execute();
 
         $db = null;
 
         return $sql;
+    }
+
+    public static function searchProduit($search) {
+        $db = loginDB();
+        
+        $sql = $db->prepare('SELECT p.idProduit, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description FROM produit p WHERE nom LIKE :search OR description LIKE :search');
+        $search = '%'.$search.'%'; // Ajouter les caractères joker autour de la recherche
+        $sql->bindParam(':search', $search, PDO::PARAM_STR);
+        $sql->execute();
+        $sql->setFetchMode(PDO::FETCH_CLASS, 'Produit'); 
+        $req = $sql->fetchAll();
+
+        $db = null; 
+
+        return $req;
+    
     }
 }

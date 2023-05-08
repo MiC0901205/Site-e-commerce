@@ -1,6 +1,5 @@
 <?php
 
-require_once('./model/login_db.php');
 require_once('./repository/ClientRepository.php');
 require_once('./model/Client.php');
 

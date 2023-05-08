@@ -51,6 +51,14 @@ switch ($uc) {
     case 'admin':
         include 'controller/adminController.php';
         break;
+
+    case 'paiement':
+        include 'controller/paiementController.php';
+        break;
+
+    case 'search':
+        include 'controller/rechercheController.php';
+        break;
 }
 
 ?>

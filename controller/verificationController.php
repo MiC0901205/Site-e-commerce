@@ -113,7 +113,7 @@ switch ($action) {
 
    default:
       include 'view/login.php';
-      break;
+   break;
 
 }
 
