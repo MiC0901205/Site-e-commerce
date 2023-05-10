@@ -80,13 +80,13 @@ switch ($action) {
                     $valid = false;
                     
                 }elseif(!preg_match("/^[a-z0-9\-_.]+@[a-z0-9\-_.]+\.[a-z]{2,3}$/i", $mail)){
-                    echo $mail;
                     $valid = false;
     
                 }else{
                     $req = ClientRepository::selectMail($mail);
                     if($req <> ""){
                         $valid = false;
+                        $error = true;
                     }
                 }
                 
@@ -102,12 +102,35 @@ switch ($action) {
                     $valid = false;
                 }  
     
-                if(empty($mdp)) {
+                function isPasswordStrong($password) {
+                    // Au moins 8 caractères
+                    if (strlen($password) < 8) {
+                        return false;
+                    }
+                
+                    // Au moins une lettre minuscule, une lettre majuscule et un chiffre
+                    if (!preg_match('/[a-z]/', $password) || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
+                        return false;
+                    }
+                
+                    // Au moins un caractère spécial
+                    if (!preg_match('/[^a-zA-Z0-9]/', $password)) {
+                        return false;
+                    }
+                
+                    return true;
+                }
+
+                if (empty($mdp)) {
                     $valid = false;
-    
+                } elseif (!isPasswordStrong($mdp)) {
+                    $valid = false;
+                    $errorMdp = true;
                 }elseif($mdp != $confmdp){
                     $valid = false;
                 }
+
+                var_dump($valid);
     
                 if($valid){
                    
@@ -128,12 +151,20 @@ switch ($action) {
                         echo "Error: l'insertion n'a pas été faite";
                     }
                 } else {
-                    header('Location: ./index.php?uc=register&action=demandeRegister&error=true');
+                    if(isset($errorMdp) && $errorMdp == true) {
+                        header('Location: ./index.php?uc=register&action=demandeRegister&errorMdp=true');
+                    } else if(isset($error) && $error == true) {
+                        header('Location: ./index.php?uc=register&action=demandeRegister&error=true');
+                    }
                 }
             }
         } else {
             $etatMail = $_GET['mail_send'];
-            header('Location: ./view/register.php?mail_send='.$etatMail);
+            if($_GET['mail_send'] == '') {
+                header('Location: ./view/register.php');
+            } else {
+                header('Location: ./index.php?uc=register&action=demandeRegister&mail_send='.$etatMail); 
+            }
         }
     break;
 

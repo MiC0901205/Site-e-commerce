@@ -18,14 +18,22 @@ selectTypeBatterie.addEventListener("change", function() {
 function updateButtons() {
     var checkedCount = 0;
     var checkboxes = document.querySelectorAll('input[type=checkbox]');
+    var id = 0;
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
             checkedCount++;
+            id = checkboxes[i].id
+            console.log(checkboxes.length);
+
             for (var j = 0; j < checkboxes.length; j++) {
-                if (j !== i) {
+                if (checkboxes[j].checked && j != i) {
+                    console.log(j);
                     checkboxes[j].checked = false;
+                    break;
+
                 }
             }
+            break;
         }
     }
     var deleteButton = document.getElementById('delete-button');
@@ -38,8 +46,13 @@ function updateButtons() {
         editButton.style.borderColor = 'green';
         deleteButton.style.borderColor = 'red';
         deleteButton.onclick = () => {
+            checkboxes[i].checked = false;
             let isDelete = confirm("Etes-vous sûr de vouloir supprimer ce produit ?");
-            location.replace('./index.php?uc=admin&action=supprimerProduit&idProduit='+ i +'');
+            location.replace('./index.php?uc=admin&action=supprimerProduit&idProduit='+ id +'');
+        }
+        editButton.onclick = () => {
+            checkboxes[i].checked = false;
+            location.replace('./index.php?uc=admin&action=infoProduit&idProduit='+ id +'');
         }
     } else {
         deleteButton.disabled = true;

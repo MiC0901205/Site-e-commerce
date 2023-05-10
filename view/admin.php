@@ -14,6 +14,17 @@ require_once('./repository/ProduitRepository.php');
     <h1>Back-office du site</h1>
 
     <?php
+    if(isset($_GET['modif'])){
+        if($_GET['modif'] == 1) {
+            echo '<div class="alert alert-success" role="alert">
+            Les données du produit ont bien été modifiées
+            </div>';
+        } else if($_GET['modif'] == 0) {
+            echo "<div class='alert alert-danger' role='alert'>
+            Les données du produit n'ont pas été modifiées
+            </div>";
+        }
+    }
     if(isset($_GET['inserted'])) {
         if($_GET['inserted'] == true) {
             echo '<div class="alert alert-success" role="alert">
@@ -39,7 +50,7 @@ require_once('./repository/ProduitRepository.php');
                 <input id="delete-button" class="supprimer" type="button" value="Supprimer le produit" disabled/>
             </a>
         </div><div class="modifier-produit">
-            <a href="../index.php?uc=admin&action=infoProduit">
+            <a href="#">
                 <input id="edit-button" class="modifier" type="button" value="Modifier le produit" disabled/>
             </a>
         </div>

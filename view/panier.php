@@ -62,7 +62,7 @@ require_once('./repository/ProduitRepository.php');
                 </p>';
 
             echo '<div class="d-flex flex-row bouton">
-                    <input class="btn-valider" type="submit" name="submit" id="Valider" value="Valider">
+                    <input class="btn-valider" type="submit" name="submit" id="Valider" value="Payer">
                     <a href="./index.php?uc=accueil" id="annuler">Annuler</a>
                 </div>
             </div>';

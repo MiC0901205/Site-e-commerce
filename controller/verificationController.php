@@ -1,5 +1,7 @@
 <?php
 
+use function PHPSTORM_META\map;
+
 require_once('./model/Client.php');
 require_once('./repository/ClientRepository.php');
 
@@ -42,7 +44,7 @@ switch ($action) {
       ---------------
       Ceci est un mail automatique, Merci de ne pas y répondre.';
             
-      mail($destinataire, $sujet, $message, $entete) ; // Envoi du mail
+      mail($destinataire, $sujet, $message, $entete);
       header('Location: ./index.php?uc=register&action=enregistrement&mail_send=true');
       break;
 

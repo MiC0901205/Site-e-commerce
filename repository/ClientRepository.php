@@ -14,6 +14,18 @@ class ClientRepository {
         return $sql;
     }
 
+    public static function deleteClient($mail) {
+        $db = loginDB();
+
+        $sql = $db->prepare('DELETE FROM `client` WHERE :mail');
+        $sql->bindParam(':mail', $mail);
+        $sql->execute();
+
+        $db = null;
+
+        return $sql;
+    }
+
     public static function selectMail($mail){
         $db = loginDB();
         $req_mail = $db->prepare("SELECT adresse_mail FROM client WHERE adresse_mail = :mail");

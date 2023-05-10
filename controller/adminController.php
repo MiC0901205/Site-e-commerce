@@ -89,7 +89,7 @@ switch ($action) {
             if ($valid) {
                 try {
                     ProduitRepository::insertProduit($nom, $prix, $couleur, $image, $largeur, $longueur, $hauteur, $poids, $description, $qteStock, $seuilAlert, $idType);
-                    header('Location ./index.php?uc=admin&action=admin&inserted=true');
+                    header('Location: ./index.php?uc=admin&action=admin&inserted=true');
 
                 } catch (Exception $ex) {
                     header('Location: ./index.php?uc=admin&action=ajoutProduit&error=true');
@@ -101,7 +101,7 @@ switch ($action) {
 
     case 'infoProduit':
 
-        $Produit = ProduitRepository::selectInfoProduit(31);
+        $Produit = ProduitRepository::selectInfoProduit($_GET['idProduit']);
 
         $nom = $Produit->getNom();
         $prix = $Produit->getPrix();
@@ -129,7 +129,6 @@ switch ($action) {
         break;
     
     case 'verificationModif':
-
         // S il y a une session alors on ne retourne plus sur cette page 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -137,10 +136,12 @@ switch ($action) {
     
         // Si la variable "$_Post" contient des informations alors on les traitres 
         if(!empty($_POST)){
+
             extract($_POST);
             $valid = true;
     
             if (isset($_POST)){ 
+
                 $nom = htmlentities(trim($nom));
                 $prix = htmlentities(trim($prix));
                 $couleur = htmlentities(trim($couleur));
@@ -206,7 +207,7 @@ switch ($action) {
 
                 if(empty($seuilAlert)){
                     $valid = false;
-                    $er_seuilAlert = ("Le sueil d'alerte du produit ne peut pas être vide");
+                    $er_seuilAlert = ("Le seuil d'alerte du produit ne peut pas être vide");
                 } 
                 
                 if(empty($idType)){
@@ -214,7 +215,7 @@ switch ($action) {
                     $er_idType = ("Le type du produit ne peut pas être vide");
                 } 
                 
-                if($valid)
+                if($valid == 1)
                 {   
                     $Produit = new Produit();
                     $Produit->setNom($nom);
@@ -229,14 +230,17 @@ switch ($action) {
                     $Produit->setQteStock($qteStock);
                     $Produit->setSeuilAlert($seuilAlert);
                     $Produit->setIdType($idType);
+                    $Produit->setId($_GET['idProduit']);
 
                     $sql = ProduitRepository::updateProduit($Produit);
 
                     if ($sql == TRUE) {
-                        header("Location: ./index.php?uc=admin&action=infoProduit&modif=true");
+                        header("Location: ./index.php?uc=admin&action=admin&modif=1");
                     } else {
                         echo "Error: La modification n'a pas été faite";
                     }
+                } else {
+                    header("Location: ./index.php?uc=admin&action=admin&modif=0");
                 }
             }
         } else {

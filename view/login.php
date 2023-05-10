@@ -33,6 +33,11 @@
                         Votre mot de passe ou adresse mail est incorrecte
                         </div>';        
                     } 
+                    if(isset($_GET['out']) && $_GET['out'] == 'redirect') {
+                      echo '<div class="alert alert-danger" role="alert">
+                        Vous devez vous connecter pour voir votre panier
+                        </div>';
+                    }
 
                     
                     ?>

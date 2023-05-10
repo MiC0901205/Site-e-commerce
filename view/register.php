@@ -18,11 +18,20 @@
                     echo '<div class="alert alert-info" id="mail" style="display:block" role="alert">
                     Un mail vous a été envoyé, veuillez vérifier votre boite mail
                     </div>';
+                } else if (($_GET['mail_send']) == false) {
+                    echo "<div class='alert alert-danger' id='mail' style='display:block' role='alert'>
+                    Votre mail n'existe pas, aucun mail n'a pu vous être envoyé
+                    </div>";
                 }
             }
             if(isset($_GET['error'])) {
                 echo "<div class='alert alert-danger' id='mail' style='display:block' role='alert'>
                         Un compte est déjà lié à l'adresse mail rentrée
+                    </div>";
+            }
+            if(isset($_GET['errorMdp'])) {
+                echo "<div class='alert alert-danger' id='mail' style='display:block' role='alert'>
+                        Votre mot de passe n'est pas un mot de passe fort
                     </div>";
             }
         ?>
@@ -114,23 +123,31 @@
                 }
             ?>
 
-            <label class="password_label"><b>Mot de passe</b>
-                <input class="psw" type="password" placeholder="Mot de passe*" name="mdp" value="<?php if(isset($mdp)){ echo $mdp; }?>" required>
+            <label for="password" class="password_label">
+                <b>Mot de passe</b>
+                <input class="psw" id="password" type="password" placeholder="Mot de passe*" name="mdp" value="<?php if(isset($mdp)){ echo $mdp; }?>" required oninput="checkPasswordStrength()" onblur="clearPasswordIndications()">
+                <div class="progress" style="visibility:hidden">
+                    <div id="password-strength-bar"></div>
+                </div>
+                <div class="password-icon">
+                    <i data-feather="eye" class="eye"></i>
+                    <i data-feather="eye-off" class="eyeOff"></i>
+                </div>
+                <div>
+                    <span id="password-indications"></span>
+                </div>
+            </label>
+            
+            <label class="password_label">
+                <b>Confirmer le mot de passe</b>
+                <input class="psw" type="password" placeholder="Confirmer le mot de passe*" name="confmdp" required>
                 <div class="password-icon">
                     <i data-feather="eye" class="eye"></i>
                     <i data-feather="eye-off" class="eyeOff"></i>
                 </div>
             </label>
 
-            <label class="password_label"><b>Confirmer le mot de passe</b>
-            <input class="psw" type="password" placeholder="Confirmer le mot de passe" name="confmdp" required>
-                <div class="password-icon">
-                    <i data-feather="eye" class="eye"></i>
-                    <i data-feather="eye-off" class="eyeOff"></i>
-                </div>
-            </label>
-
-            <!-- script JS icon -->
+            <!-- Inclure la bibliothèque Feather Icons JavaScript -->
             <script src="https://unpkg.com/feather-icons"></script>
             <script>
                 feather.replace();

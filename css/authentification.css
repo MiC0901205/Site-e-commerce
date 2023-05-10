@@ -113,3 +113,50 @@ label .password-icon:hover {
     padding-left: 42%;
     padding-right: 42%;
 }
+
+
+#password-indications {
+    color: red;
+    margin-left: 1%;
+}
+
+.progress {
+    width: 100%;
+    background-color: #eaeaea;
+    height: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#password-strength-bar {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+#password-strength {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.password_label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Couleurs pour la barre de progression */
+.bar-weak {
+    background-color: #FF0000;
+}
+
+.bar-medium {
+    background-color: #FFA500;
+}
+
+.bar-strong {
+    background-color: #FFFF00;
+}
+
+.bar-very-strong {
+    background-color: #00FF00;
+}

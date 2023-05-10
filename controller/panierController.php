@@ -21,7 +21,7 @@ switch ($action) {
             $prenom = $Client->getPrenom();
 
         } else {
-            echo "vous devez vous connecter pour voir votre panier"; 
+            header('Location: ./index.php?uc=login&action=demandeConnexion&out=redirect');
             exit;
         }
 

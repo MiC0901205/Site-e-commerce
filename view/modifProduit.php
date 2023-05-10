@@ -11,15 +11,8 @@
     </head>
     <body>      
         <div id="container">
-        <form action="./index.php?uc=admin&action=verificationModif" method="post">
+        <form action="./index.php?uc=admin&action=verificationModif&idProduit=<?php echo $_GET['idProduit'] ?>" method="post">
         <center><h2>Modifier les données du produit</h2></center>
-            <?php  
-                if(isset($_GET['modif']) && $_GET['modif'] == true) {
-                    echo '<div class="alert alert-success" role="alert">
-                    Vos données ont bien été modifiées
-                    </div>';
-                }      
-            ?>
             <div class="row">
                 <div class="col-md-6">
                     <div class="Nom">
@@ -155,12 +148,10 @@
                 <div class="form-group">
                     <label for="idType">Type de produit :</label>
                     <select class="form-control select" id="idType" name="idType" required>
-                    <option value="">-- Sélectionnez un type --</option>
-                    <option value="0" hidden selected><?php echo $type ?></option>
-                    <option value="1">Batterie</option>
-                    <option value="2">Souris</option>
-                    <option value="3">Clavier</option>
-                    <option value="4">Cable de recharge</option>
+                    <option value="1" <?php if($idType == 1){ echo 'selected'; }?>>Batterie</option>
+                    <option value="2" <?php if($idType == 2){ echo 'selected'; }?>>Souris</option>
+                    <option value="3" <?php if($idType == 3){ echo 'selected'; }?>>Clavier</option>
+                    <option value="4" <?php if($idType == 4){ echo 'selected'; }?>>Cable de recharge</option>
                     </select>
                 </div>
             </div>
