@@ -74,7 +74,7 @@ switch ($action) {
 
     case 'moyenneTailleBatterie':
         try{ 
-            ProduitRepository::selectProduitByTaille('1000', $_GET['taille']);
+            $listeProduct = ProduitRepository::selectProduitByTaille('1000', $_GET['taille']);
 
             $titlePage = "Batterie de 1000 à " . $_GET['taille']. " cm";
 

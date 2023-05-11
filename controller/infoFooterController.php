@@ -16,4 +16,8 @@ switch ($action) {
     case 'cookies':
         include 'view/use_of_Cookies.php';
         break;
+
+    default :
+        include 'index.php';
+        break;
 }

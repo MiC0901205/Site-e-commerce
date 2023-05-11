@@ -3,6 +3,7 @@ include 'navbar.php';
 require_once('./repository/ProduitRepository.php');
 
 ?>
+
 <link rel="stylesheet" href="../css/panier.css">
 <div id="panier"> 
     <form action="./index.php?uc=paiement&action=paiement" method="POST">

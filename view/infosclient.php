@@ -20,8 +20,8 @@
                     </div>';
                 }      
             ?>
-            <div class="infosNP">
-                <div class="Nom">
+            <div class="infos">
+                <div class="infos_1">
                     <?php                      
                         if (isset($er_nom)){
                         ?>
@@ -34,7 +34,7 @@
                     <input type="text" placeholder="Votre nom" name="nom" value="<?php if(isset($nom)){ echo $nom; }?>" required>
                 </div>
 
-                <div class="Prenom" style="margin-left: 40px;">
+                <div class="infos_2" style="margin-left: 40px;">
                     <?php
                         if (isset($er_prenom)){
                         ?>

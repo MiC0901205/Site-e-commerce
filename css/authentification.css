@@ -1,5 +1,5 @@
 body{
-    background:rgb(49, 1, 49);
+    background:rgb(60, 1, 60);
 }
 #container{
     width:400px;
@@ -48,11 +48,11 @@ input[type=submit]:hover {
     border: 1px solid #53af57;
 }
 
-.infosNP{
+.infos{
     display: flex;
 }
 
-.Nom, .Prenom{
+.infos_1, .infos_2{
     max-width: 50%;
 }
 
@@ -105,8 +105,8 @@ label .password-icon:hover {
 }
 
 .annuler {
-    padding-left: 24%;
-    padding-right: 24%;
+    padding-left: 24.5%;
+    padding-right: 25%;
 }
 
 .btn-annuler-modif {
@@ -114,11 +114,6 @@ label .password-icon:hover {
     padding-right: 42%;
 }
 
-
-#password-indications {
-    color: red;
-    margin-left: 1%;
-}
 
 .progress {
     width: 100%;
@@ -159,4 +154,14 @@ label .password-icon:hover {
 
 .bar-very-strong {
     background-color: #00FF00;
+}
+
+#password-indications {
+    color: blue;
+    margin-left: 1%;
+}
+
+
+.info-icon {
+    color:blue;
 }

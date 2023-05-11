@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="./css/principal.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="./js/accueil.js"></script> 
 </head>
 <body>
 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -104,7 +103,13 @@
 					</li>
 				</ul>
 			</div>
-			<form action="./index.php?uc=search&action=search" method="POST" class="d-flex search">
+			<form action=<?php if(isset($_GET['connexion']) && $_GET['connexion'] == 'blocked') {
+								echo "./index.php?uc=accueil&connexion=blocked";
+							} else {
+								echo "./index.php?uc=search&action=search";
+							}
+				?>
+				method="POST" class="d-flex search">
 				<input class="form-control me-2" name="search" type="search" placeholder="Rechercher" aria-label="Search">
 				<button class="btn btn-outline-success" type="submit">Rechercher</button>
 			</form>
@@ -154,10 +159,10 @@
 								echo $parameterUser;		
 							}
 				} else {
-					echo '<li class="btn btn-connexion">
+					echo '<li class="btn btn-connexion" id="connexionButton">
 							<div id="tooltip">
 								<a href="./index.php?uc=login&action=demandeConnexion">
-								<span id="tooltipTextConnexion" class="tooltipText">Connexion</span>
+								<span id="tooltipTextConnexion" class="tooltipText" disabled>Connexion</span>
 								<span><img src="./img/account_logo.png" height="30px" width="30px"></span>
 								</a>
 							</div>
@@ -172,3 +177,5 @@
 			?>
 		</div>
 	</nav>
+
+

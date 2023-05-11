@@ -10,7 +10,11 @@
     <body>
         <div id="container">
             <!-- zone de connexion -->
-            
+            <div id="compteur" style=" color:white;"></div>
+
+            <div id="alerte" class="alert alert-danger connexion-blocked" role="alert" style="display:none;">
+              La connexion est bloquée en raison du nombre d'essais de connexion échoués. Veuillez patienter...
+            </div>
             <form  method="POST" action="./index.php?uc=login&action=validateConnexion">
                 <h1>Connexion</h1>
                 <?php  
@@ -65,9 +69,15 @@
                     <a href="./index.php?uc=register&action=enregistrement">Pas de compte ?</a><br>
                     </div>
                     <input type="submit" name="connexion" id="submit" value="LOGIN">
-                    <a href="../index.php?uc=accueil"><input class="btn btn-secondary annuler" type="button" value="Annuler l'authentification"/></a>
+                    <?php if(isset($_GET['connexion']) && $_GET['connexion'] == 'blocked') {
+                        echo "<a href='#'><input class='btn btn-secondary annuler' type='button' value='Annuler authentification'/></a>";
+                    } else {
+                      echo "<a href='../index.php?uc=accueil' id='annuler'><input class='btn btn-secondary annuler' type='button' value='Annuler authentification'/></a>";
+                    }
+                    ?>     
             </form>
             <script src="../js/authentification.js"></script>
+            <script src="../js/verifLog.js"></script>
         </div>
     </body>
 </html>

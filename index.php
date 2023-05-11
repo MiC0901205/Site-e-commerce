@@ -59,6 +59,8 @@ switch ($uc) {
     case 'search':
         include 'controller/rechercheController.php';
         break;
+    
+    
 }
 
 ?>

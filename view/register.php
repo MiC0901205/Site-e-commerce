@@ -31,14 +31,14 @@
             }
             if(isset($_GET['errorMdp'])) {
                 echo "<div class='alert alert-danger' id='mail' style='display:block' role='alert'>
-                        Votre mot de passe n'est pas un mot de passe fort
+                    Votre mot de passe doit être plus complexe pour assurer sa sécurité
                     </div>";
             }
         ?>
             
         <h1>Inscription</h1>
-            <div class="infosNP">
-                <div class="Nom">
+            <div class="infos">
+                <div class="infos_1">
                     <?php          
                         if (isset($er_nom)){
                         ?>
@@ -51,7 +51,7 @@
                     <input type="text" placeholder="Votre nom" name="nom" value="<?php if(isset($nom)){ echo $nom; }?>" required>
                 </div>
 
-                <div class="Prenom" style="margin-left: 40px;">
+                <div class="infos_2" style="margin-left: 40px;">
                     <?php
                         if (isset($er_prenom)){
                         ?>
@@ -126,7 +126,7 @@
             <label for="password" class="password_label">
                 <b>Mot de passe</b>
                 <input class="psw" id="password" type="password" placeholder="Mot de passe*" name="mdp" value="<?php if(isset($mdp)){ echo $mdp; }?>" required oninput="checkPasswordStrength()" onblur="clearPasswordIndications()">
-                <div class="progress" style="visibility:hidden">
+                <div class="progress">
                     <div id="password-strength-bar"></div>
                 </div>
                 <div class="password-icon">
@@ -134,6 +134,7 @@
                     <i data-feather="eye-off" class="eyeOff"></i>
                 </div>
                 <div>
+                    <i class="info-icon" data-feather="info" style="display:none"></i>
                     <span id="password-indications"></span>
                 </div>
             </label>

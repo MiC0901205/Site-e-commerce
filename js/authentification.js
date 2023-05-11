@@ -16,21 +16,15 @@ for(let i = 0; i < eye.length; i++) {
     });
 }
 
-// sélectionne l'élément input pour le numéro de téléphone
 const inputTelephone = document.querySelector('#telephone');
 
-// ajoute un écouteur d'événements pour la saisie de l'utilisateur
 inputTelephone.addEventListener('input', (event) => {
-  // récupère la valeur saisie par l'utilisateur
   let telephone = event.target.value;
   
-  // enlève tous les caractères qui ne sont pas des chiffres
   telephone = telephone.replace(/\D/g, '');
   
-  // ajoute des espaces tous les 2 chiffres
   telephone = telephone.replace(/(\d{2})(?=\d)/g, '$1 ');
   
-  // met à jour la valeur de l'élément input
   event.target.value = telephone;
 });
 
@@ -53,54 +47,50 @@ function checkPasswordStrength() {
     var uppercaseDisplayed = false;
     var specialDisplayed = false;
 
+    var passwordIndications = document.getElementById('password-indications');
+    var infoIcon = document.querySelector('.info-icon');
 
-    // Vérification de la longueur du mot de passe
     if (password.length >= 8) {
-        document.getElementById('password-indications').innerHTML = '';
+        passwordIndications.innerHTML = '';
         strength++;
     } else {
-        document.getElementById('password-indications').innerHTML = 'Il faut au moins 8 caractères';
+        passwordIndications.innerHTML = "Veuillez inclure au moins 8 caractères.";
         lengthDisplayed = true;
     }
 
-    // Vérification de la présence de chiffres
     if (/\d/.test(password)) {
-        document.getElementById('password-indications').innerHTML = '';
         strength++;
     } else {
         if (!lengthDisplayed) {
-            document.getElementById('password-indications').innerHTML = 'Il faut au moins un chiffre';
+            passwordIndications.innerHTML = "Veuillez inclure au moins un chiffre.";
             digitDisplayed = true;
         }
     }
 
-    // Vérification de la présence de lettres majuscules
     if (/[A-Z]/.test(password)) {
-        document.getElementById('password-indications').innerHTML = '';
         strength++;
     } else {
         if (!lengthDisplayed && !digitDisplayed) {
-            document.getElementById('password-indications').innerHTML = 'Il faut au moins une lettre majuscule';
+            passwordIndications.innerHTML = "Veuillez inclure au moins une majuscule.";
             uppercaseDisplayed = true;
         }
     }
 
-    // Vérification de la présence de caractères spéciaux
-    if (/[^a-zA-Z0-9]/.test(password)) {
-        document.getElementById('password-indications').innerHTML = '';
+    if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
         strength++;
     } else {
         if (!lengthDisplayed && !digitDisplayed && !uppercaseDisplayed) {
-            document.getElementById('password-indications').innerHTML = 'Il faut au moins un caractère spéciale';
+            passwordIndications.innerHTML = "Veuillez inclure au moins un caractère spécial.";
             specialDisplayed = true;
-        }
-        if (!lengthDisplayed && !digitDisplayed && !uppercaseDisplayed && !specialDisplayed) {
-            document.getElementById('password-indications').innerHTML = '';
-            specialDisplayed = false;
         }
     }
 
-    // Assigner une classe en fonction de la force du mot de passe
+    if (lengthDisplayed || digitDisplayed || uppercaseDisplayed || specialDisplayed) {
+        infoIcon.style.display = 'inline-block';
+    } else {
+        infoIcon.style.display = 'none';
+    }
+
     var progressValue = (strength / 4) * 100;
     var progressBar = document.getElementById('password-strength-bar');
     progressBar.style.visibility = 'visible';
@@ -123,10 +113,9 @@ function checkPasswordStrength() {
         default:
             progressBar.classList.add('bar-weak');
     }
-
-    document.getElementById('password-strength').innerHTML = message;
 }
 
 function clearPasswordIndications() {
     document.getElementById('password-indications').innerHTML = '';
+    document.querySelector('.info-icon').style.display = 'none';
 }

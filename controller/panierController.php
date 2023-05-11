@@ -21,7 +21,11 @@ switch ($action) {
             $prenom = $Client->getPrenom();
 
         } else {
-            header('Location: ./index.php?uc=login&action=demandeConnexion&out=redirect');
+            if(isset($_GET['connexion']) && $_GET['connexion'] == 'blocked') {
+                header('Location: ./index.php?uc=accueil&connexion=blocked');
+            } else {
+                header('Location: ./index.php?uc=login&action=demandeConnexion&out=redirect');
+            }
             exit;
         }
 

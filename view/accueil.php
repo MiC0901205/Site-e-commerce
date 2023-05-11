@@ -1,5 +1,6 @@
 <?php
 include 'navbar.php'; 
+
 ?>
 	<link rel="stylesheet" href="./css/principal.css">
 	<div class="desc">
@@ -57,7 +58,7 @@ include 'navbar.php';
 			</div>
 		</div>
 
-	<script src="./js/accueil.js"></script> 
+	<script src="../js/accueil.js"></script> 
 </body>
 </html> 
 		  

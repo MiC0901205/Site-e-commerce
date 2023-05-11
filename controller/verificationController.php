@@ -49,9 +49,16 @@ switch ($action) {
       break;
 
    case 'validateConnexion':
+      $loginBlocked = false;
+
       if (session_status() === PHP_SESSION_NONE) {
          session_start();
       }  
+
+      if (!isset($_SESSION['login_attempts'])) {
+         $_SESSION['login_attempts'] = 0;
+      }
+
       if(isset($_POST['connexion'])) {
          if(!empty($_POST['adresse_mail']) && !empty($_POST['mdp'])){
             $mail = htmlspecialchars($_POST['adresse_mail']);
@@ -66,12 +73,29 @@ switch ($action) {
                $_SESSION['mdp'] = $info->getMdp();
                $_SESSION['id'] = $info->getId();
                $_SESSION['isAdmin'] = $info->getIsAdmin();
-               
+               $_SESSION['login_attempts'] = 0;
+
                header('Location: ./index.php?uc=validation&action=connexion');
                
             } else {
+               $blockDuration = 300;
+               $_SESSION['login_attempts']++;
                header('Location: ./index.php?uc=login&action=demandeConnexion&error=true');
-               echo "Votre mot de passe ou adresse mail est incorrecte";
+               var_dump($_SESSION['login_attempts']);
+               if ($_SESSION['login_attempts'] >= 5) {
+                  $elapsedTime = time() - $_SESSION['login_blocked_time'];
+                  if ($elapsedTime < $blockDuration) {
+                     $loginBlocked = true;
+                  } else {
+                     // Réinitialiser les variables de blocage
+                     $_SESSION['login_blocked'] = false;
+                     $_SESSION['login_blocked_time'] = 0;
+                     $_SESSION['login_attempts'] = 0;
+                     $loginBlocked = false;
+                  }
+                  header('Location: ./index.php?uc=login&action=demandeConnexion&connexion=blocked');
+                  exit();
+              }
             }
 
          } else {

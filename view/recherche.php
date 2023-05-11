@@ -22,7 +22,7 @@ include_once './view/navbar.php';
 					</div>';
 					} 
 				}
-				if (isset($error2)) {
+				else if (isset($error2)) {
 					if($error2 == true) {
 						echo '<div class="alert alert-danger" role="alert">
 						Aucun produit trouvé
