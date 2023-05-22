@@ -1,65 +1,70 @@
-.col-sm-3{
-    background:rgb(49, 1, 49);
+.col-sm-3 {
+    background: rgb(49, 1, 49);
     margin-right: 20px;
     margin-bottom: 20px;
     text-align: center;
     border-radius: 10px 85px / 120px;
+    height: 400px; /* Ajout de la hauteur fixe */
+    position: relative; /* Ajout de la position relative */
 }
 
-h1
-{
+h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
-    background:rgb(49, 1, 49);
+    background: rgb(49, 1, 49);
     text-align: center;
 }
 
-li.btn{
-	display: inline-block;
-	list-style-type: none;
+li.btn {
+    display: inline-block;
+    list-style-type: none;
     padding-top: 15px;
     padding-bottom: 5px;
     margin-left: -10px;
 }
 
-li.btn a{
-	color: white;
-	text-decoration: none;
-	padding: 10px;
+li.btn a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
 }
 
-li.btn:hover a{
-	color: white;
-	background-color: white;
-	transition: 0.3s all;
+li.btn:hover a {
+    color: white;
+    background-color: white;
+    transition: 0.3s all;
 }
 
-.product:hover img{
-    display:none;
-}
-
-.product:hover{
-    background:rgb(107, 2, 107);
-}
-
-#description{
+.product:hover img {
     display: none;
 }
 
-.product:hover #description{
-    display:block;
+.product:hover {
+    background: rgb(107, 2, 107);
 }
 
-.img_Prod{
+#description {
+    display: none;
+}
+
+.product:hover #description {
+    display: block;
+}
+
+.img_Prod {
     max-height: 150px;
 }
 
-.btn-primary{
+.btn-primary {
+    position: absolute; /* Ajout de la position absolue */
+    bottom: 20px; /* Positionnement du bouton en bas de la carte */
+    left: 50%; /* Positionnement horizontal au milieu */
+    transform: translateX(-50%); /* Décalage horizontal de -50% pour centrer */
     margin-bottom: 20px;
 }
 
-.product:hover p{
-    display:none;
+.product:hover p {
+    display: none;
 }
 
 p {
@@ -67,6 +72,5 @@ p {
 }
 
 h4 {
-    color:white
+    color: white;
 }
-

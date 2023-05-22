@@ -30,7 +30,7 @@
                     </div>";
             }
             if(isset($_GET['errorMdp'])) {
-                echo "<div class='alert alert-danger' id='mail' style='display:block' role='alert'>
+                echo "<div class='alert alert-danger' id='mdp' style='display:block' role='alert'>
                     Votre mot de passe doit être plus complexe pour assurer sa sécurité
                     </div>";
             }

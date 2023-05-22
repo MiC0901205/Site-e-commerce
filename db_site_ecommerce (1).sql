@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `cp` char(5) NOT NULL,
   `tel` char(10) DEFAULT NULL,
   `mdp` varchar(100) NOT NULL,
-  `isAdmin` bit(1) NOT NULL,
+  `role` bit(1) NOT NULL,
   PRIMARY KEY (`idClient`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `client` (
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`idClient`, `nom`, `prenom`, `adresse`, `adresse_mail`, `confirm_mail`, `cle`, `ville`, `cp`, `tel`, `mdp`, `isAdmin`) VALUES
+INSERT INTO `client` (`idClient`, `nom`, `prenom`, `adresse`, `adresse_mail`, `confirm_mail`, `cle`, `ville`, `cp`, `tel`, `mdp`, `role`) VALUES
 (7, 'Blache', 'Gabin', '180 chemin des granges gontardes', 'gabin.blache@gmail.com', 1, '655b389046bf2ea803719a0ccab80925', 'Malataverne', '26780', '0627055169', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', b'0'),
 (10, 'pecheur', 'mickael', '45 rue des tourettes', 'mickael.pecheur@gmail.com', 1, '143affe10e12d4e7938123a60656d036', 'Montpellier', '26950', '0750468592', 'e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98', b'1');
 

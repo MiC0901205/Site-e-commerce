@@ -2,8 +2,8 @@
 
 use function PHPSTORM_META\map;
 
-require_once('./model/Client.php');
-require_once('./repository/ClientRepository.php');
+require_once('./model/User.php');
+require_once('./repository/UserRepository.php');
 
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
@@ -26,7 +26,7 @@ switch ($action) {
       // Génération aléatoire d'une clé
       $cle = md5(microtime(TRUE)*100000);
 
-      $sql = ClientRepository::updateCle($cle, $login);
+      $sql = UserRepository::updateCle($cle, $login);
 
       // Préparation du mail contenant le lien d'activation
       $destinataire = $login;
@@ -44,7 +44,7 @@ switch ($action) {
       ---------------
       Ceci est un mail automatique, Merci de ne pas y répondre.';
             
-      mail($destinataire, $sujet, $message, $entete);
+      //mail($destinataire, $sujet, $message, $entete);
       header('Location: ./index.php?uc=register&action=enregistrement&mail_send=true');
       break;
 
@@ -64,18 +64,22 @@ switch ($action) {
             $mail = htmlspecialchars($_POST['adresse_mail']);
             $mdp = hash('sha256', $_POST['mdp']);
 
-            $recupUser = ClientRepository::recupUser($mail, $mdp);
+            $recupUser = UserRepository::recupUser($mail, $mdp);
             
             if($recupUser->rowCount() > 0) {
-               $recupUser->setFetchMode(PDO::FETCH_CLASS, 'Client'); 
+               $recupUser->setFetchMode(PDO::FETCH_CLASS, 'User'); 
                $info = $recupUser->fetch();
                $_SESSION['adresse_mail'] = $info->getAdresseMail();
                $_SESSION['mdp'] = $info->getMdp();
                $_SESSION['id'] = $info->getId();
-               $_SESSION['isAdmin'] = $info->getIsAdmin();
+               $_SESSION['role'] = $info->getRole();
                $_SESSION['login_attempts'] = 0;
 
-               header('Location: ./index.php?uc=validation&action=connexion');
+               if(isset($_GET['out']) && $_GET['out'] == 'redirect') {
+                  header('Location: ./index.php?uc=validation&action=connexion&out=redirect');
+               } else {
+                  header('Location: ./index.php?uc=validation&action=connexion');
+               }
                
             } else {
                $blockDuration = 300;
@@ -105,18 +109,18 @@ switch ($action) {
    break;
     
    case 'validate_mail':
-      $cle = ClientRepository::recupCle($_GET['mail']);
+      $cle = UserRepository::recupCle($_GET['mail']);
 
       if($cle->getCle() == $_GET['cle']){
-         $req = ClientRepository::updateConfirmMail(1, $_GET['mail']);
+         $req = UserRepository::updateConfirmMail(1, $_GET['mail']);
 
          if(isset($_GET['cle']) && isset($_GET['mail'])){
             $cle = $_GET['cle'];
             $login = $_GET['mail'];
-            $rows = ClientRepository::selectUser($cle, $login);
+            $rows = UserRepository::selectUser($cle, $login);
 
             if ($rows == true){
-               $req = ClientRepository::updateConfirmMail(TRUE, $_GET['mail']);
+               $req = UserRepository::updateConfirmMail(TRUE, $_GET['mail']);
 
                if ($req == TRUE) {
                   echo $msg;

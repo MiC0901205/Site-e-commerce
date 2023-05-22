@@ -16,7 +16,7 @@ class Produit {
     private $seuilAlert;
     private $idType;
 
-    // SETTER AND GETTER idClient
+    // SETTER AND GETTER idProduit
     public function setId($idProduit) {
         $this->idProduit = $idProduit;
     }

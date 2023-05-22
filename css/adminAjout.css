@@ -1,0 +1,240 @@
+h1, h2 {
+    color: #444444;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+form {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+
+input[type="text"], input[type="number"], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0069d9;
+}
+
+.error {
+    color: #ff0000;
+    margin-top: 5px;
+}
+
+.label-dimension {
+    margin-top:2%; 
+    margin-bottom:2%; 
+    color:red;
+  }
+
+  .label-info {
+    margin-bottom:2%; 
+    color:red;
+  }
+
+  .infos_supp {
+    margin-bottom: 8%;
+  }
+
+  .btn-valider-modif {
+    background-color: green;
+    height: 7%;
+    border-radius: 10px;
+  }
+
+  #modif {
+    margin-left: 1.5%;
+    width: 97%;
+    margin-bottom: 1.5%;
+  }
+  
+  #annul {
+    width: 100%;
+  }
+
+  #annulerAjout {
+    width: 100%;
+  }
+
+  #valider {
+    margin-top: 2%;
+    margin-left: 1.5%;
+    width: 97%;
+    margin-bottom: 1.5%;
+  }
+
+  #valider-prod {
+    margin-top: 2%;
+    margin-left: 1.5%;
+    width: 100%;
+    margin-bottom: 1.5%;
+  }
+  
+
+.progress {
+  width: 100%;
+  background-color: #eaeaea;
+  height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#password-strength-bar {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+#password-strength {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.password_label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Couleurs pour la barre de progression */
+.bar-weak {
+  background-color: #FF0000;
+}
+
+.bar-medium {
+  background-color: #FFA500;
+}
+
+.bar-strong {
+  background-color: #FFFF00;
+}
+
+.bar-very-strong {
+  background-color: #00FF00;
+}
+
+#password-indications {
+  color: blue;
+  margin-left: 1%;
+}
+/* Full-width inputs */
+input[type=text], input[type=password], input[type=mail]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit] {
+  background-color: #53af57;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type=submit]:hover {
+  background-color: white;
+  color: #53af57;
+  border: 1px solid #53af57;
+}
+
+.infos{
+  display: flex;
+}
+
+.infos_1, .infos_2{
+  max-width: 50%;
+}
+
+.password_label {
+  position: relative;
+  margin-top:2%;
+}
+
+.psw {
+  font-size: 1em;
+  background:transparent;
+  border: 2px solid #7a7a7a;
+  border-radius: 5px;
+  padding: 1rem 1.2rem;
+  transition: all 0.2s;
+}
+
+.psw:focus {
+  border-color: #ff4754;
+}
+
+label .password-icon {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 55px;
+  transform: translateY(-50%);
+  width: 20px;
+  color:black;
+  transition: all 0.2s;
+  right: 10px;
+}
+
+label .password-icon .feather-eye-off {
+  display: none;
+}
+
+label .password-icon:hover {
+  cursor: pointer;
+  color: #ff4754;
+}
+
+
+.info-icon {
+  color:blue;
+}
+
+.tel {
+  margin-top:2.5%; 
+  height:50px;
+}
+
+.adresse {
+  height:50px;
+}
+
+.label-mdp {
+  margin-top: 2%;
+  color:red;
+}
+

@@ -1,6 +1,6 @@
 <?php
-require_once('./model/Client.php');
-require_once('./repository/ClientRepository.php');
+require_once('./model/User.php');
+require_once('./repository/UserRepository.php');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
 
@@ -15,7 +15,7 @@ switch ($action) {
         unset($_SESSION['adresse_mail']);
         unset($_SESSION['panierListe']);
         unset($_SESSION['lastdate']);
-        unset($_SESSION['isAdmin']);
+        unset($_SESSION['role']);
     
         if(!isset($_GET['afk'])){
             header("Location: ./index.php");   
@@ -48,7 +48,6 @@ switch ($action) {
         }
         
         // Si la variable "$_Post" contient des informations alors on les traitres
-            
         if(!empty($_POST)){
             extract($_POST);
             $valid = true;
@@ -83,7 +82,7 @@ switch ($action) {
                     $valid = false;
     
                 }else{
-                    $req = ClientRepository::selectMail($mail);
+                    $req = UserRepository::selectMail($mail);
                     if($req <> ""){
                         $valid = false;
                         $error = true;
@@ -129,21 +128,19 @@ switch ($action) {
                 }elseif($mdp != $confmdp){
                     $valid = false;
                 }
-
-                var_dump($valid);
     
                 if($valid){
                    
                     $mdp = hash('sha256', $_POST['mdp']);
-                    
+
                     try {
-                        $sql = ClientRepository::insertClient($nom, $prenom, $adresse, $mail, $ville, $cp, $tel, $mdp); 
+                        $sql = UserRepository::insertUser($nom, $prenom, $adresse, $mail, $ville, $cp, $tel, $mdp); 
                     } catch (Exception $ex){
-                        header('Location: location: index.php?uc=login&action=demandeConnexion');
+                        header('Location: ./index.php?uc=register&action=demandeRegister&insert=false');
                         exit;
                     }
 
-                    if (true) {
+                    if ($sql) {
                         echo "New record created successfully";
                         header("Location: ./index.php?uc=mail&action=confirm_mail&adresse_mail=$mail");
                     } else {
@@ -179,9 +176,11 @@ switch ($action) {
         }
         else if($_SESSION['adresse_mail'] !== ""){
             $user = $_SESSION['adresse_mail'];
-            // afficher un message
-            echo "Bonjour $user, vous êtes connecté";
-            header("Location: ./index.php?uc=accueil");
+            if(isset($_GET['out']) && $_GET['out'] == 'redirect') {
+                header('Location: ./index.php?uc=panier&action=panier&redirect=true');
+            } else {
+                header("Location: ./index.php?uc=accueil");
+            }
         }
     break;
 

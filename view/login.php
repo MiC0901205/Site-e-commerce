@@ -15,6 +15,13 @@
             <div id="alerte" class="alert alert-danger connexion-blocked" role="alert" style="display:none;">
               La connexion est bloquée en raison du nombre d'essais de connexion échoués. Veuillez patienter...
             </div>
+            <?php 
+            if(isset($_GET['out']) && $_GET['out'] == 'redirect') {
+              echo '<form method="POST" action="./index.php?uc=login&action=validateConnexion&out=redirect">';
+            } else {
+              echo '<form method="POST" action="./index.php?uc=login&action=validateConnexion">';
+            }
+            ?>
             <form  method="POST" action="./index.php?uc=login&action=validateConnexion">
                 <h1>Connexion</h1>
                 <?php  
@@ -66,7 +73,12 @@
                     </div>
 
                     <div id="inscription">
-                    <a href="./index.php?uc=register&action=enregistrement">Pas de compte ?</a><br>
+                    <?php if(isset($_GET['connexion']) && $_GET['connexion'] == 'blocked') {
+                      echo '<a href="#">Pas de compte ?</a><br>';
+                    } else {
+                      echo '<a href="./index.php?uc=register&action=enregistrement">Pas de compte ?</a><br>';
+                    }
+                    ?>
                     </div>
                     <input type="submit" name="connexion" id="submit" value="LOGIN">
                     <?php if(isset($_GET['connexion']) && $_GET['connexion'] == 'blocked') {

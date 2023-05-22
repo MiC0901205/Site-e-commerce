@@ -1,20 +1,3 @@
-// Filtrage par type de batterie
-const selectTypeBatterie = document.getElementById("typeProduit")
-selectTypeBatterie.addEventListener("change", function() {
-    const typeProduit = this.value;
-    const produits = document.querySelectorAll("tbody tr");
-
-    produits.forEach(function(produit) {
-    const typeBatterieProduit = produit.querySelector("td:nth-child(8)").textContent;
-
-    if (typeProduit === "" || typeProduit === typeBatterieProduit) {
-        produit.style.display = "table-row";
-    } else {
-        produit.style.display = "none";
-    }
-    });
-});
-
 function updateButtons() {
     var checkedCount = 0;
     var checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -23,11 +6,9 @@ function updateButtons() {
         if (checkboxes[i].checked) {
             checkedCount++;
             id = checkboxes[i].id
-            console.log(checkboxes.length);
 
             for (var j = 0; j < checkboxes.length; j++) {
                 if (checkboxes[j].checked && j != i) {
-                    console.log(j);
                     checkboxes[j].checked = false;
                     break;
 
@@ -47,13 +28,17 @@ function updateButtons() {
         deleteButton.style.borderColor = 'red';
         deleteButton.onclick = () => {
             checkboxes[i].checked = false;
-            let isDelete = confirm("Etes-vous sûr de vouloir supprimer ce produit ?");
-            location.replace('./index.php?uc=admin&action=supprimerProduit&idProduit='+ id +'');
-        }
+            let isDelete = confirm("Etes-vous sûr de vouloir supprimer ce type ?");
+            if (isDelete) {
+                location.replace('./index.php?uc=admin&action=supprimerType&idType=' + id);
+            } else {
+                location.replace('./index.php?uc=admin&action=adminType&suppr=false');
+            }
+        };
         editButton.onclick = () => {
             checkboxes[i].checked = false;
-            location.replace('./index.php?uc=admin&action=infoProduit&idProduit='+ id +'');
-        }
+            location.replace('./index.php?uc=admin&action=infoType&id='+ id +'');
+        };
     } else {
         deleteButton.disabled = true;
         editButton.disabled = true;

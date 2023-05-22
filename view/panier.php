@@ -11,7 +11,7 @@ require_once('./repository/ProduitRepository.php');
         <div id="commandes">
             <?php
 
-            echo "<div class='col-sm-4'>
+            echo "<div class='col-sm-6'>
             <h4> Commandes de l'utilisateur : $prenom $nom</h4>
             </div>";
     
@@ -69,7 +69,15 @@ require_once('./repository/ProduitRepository.php');
             </div>';
             
             } else {
-                echo ' Votre panier est vide ';
+                echo '<div class="message-container">
+                        Votre panier est vide
+                    </div>';
+
+                echo '<div class="button-container">
+                <a href="./index.php?uc=produit&action=typeBatterie&type=antichoc" class="prod">
+                    <input class="bouton-prod" type="button" name="bouton" value="Voir les produits">
+                </a>
+              </div>';            
             }             
             ?>
         </div>

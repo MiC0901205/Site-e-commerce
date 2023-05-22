@@ -113,3 +113,25 @@ h4 {
 .search {
     margin-bottom: -0.2%;
 }
+
+.button-container {
+    display: inline-block;
+    width: max-content;
+    text-align: center;
+}
+
+.prod {
+    display: inline-block;
+}
+
+.bouton-prod {
+    color:white;
+    background-color: blue;
+    margin-top: 15%;
+}
+
+.message-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+  

@@ -1,7 +1,7 @@
 <?php
 
-require_once('./repository/ClientRepository.php');
-require_once('./model/Client.php');
+require_once('./repository/UserRepository.php');
+require_once('./model/User.php');
 
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
@@ -14,7 +14,7 @@ switch ($action) {
             session_start();
         } 
 
-        $Client = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
+        $Client = UserRepository::selectInfoClient($_SESSION['adresse_mail']);
 
         $nom = $Client->getNom();
         $prenom = $Client->getPrenom();
@@ -83,7 +83,7 @@ switch ($action) {
                 
                 if($valid)
                 {   
-                    $client = new Client();
+                    $client = new User();
                     $client->setNom($nom);
                     $client->setPrenom($prenom);
                     $client->setAdresse($adresse);
@@ -92,7 +92,7 @@ switch ($action) {
                     $client->setTel($tel);
                     $client->setAdresseMail($_SESSION['adresse_mail']);
 
-                    $sql = ClientRepository::updateUser($client);
+                    $sql = UserRepository::updateUser($client);
 
                     if ($sql == TRUE) {
                         header("Location: ./index.php?uc=infoClient&action=info&modif=true");
@@ -104,7 +104,7 @@ switch ($action) {
         } else {
             try{ 
 
-                $Client = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
+                $Client = UserRepository::selectInfoClient($_SESSION['adresse_mail']);
 
                 $nom = $Client->getNom();
                 $prenom = $Client->getPrenom();
@@ -125,7 +125,7 @@ switch ($action) {
             session_start();
          }  
         try{ 
-            $sql = ClientRepository::historiqueCmd($_SESSION['adresse_mail']);
+            $sql = UserRepository::historiqueCmd($_SESSION['adresse_mail']);
             
             $prix = 0;
 

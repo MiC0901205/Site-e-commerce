@@ -1,7 +1,7 @@
 <?php
 require_once('./model/login_db.php');
 require_once('./repository/ProduitRepository.php');
-require_once('./repository/ClientRepository.php');
+require_once('./repository/UserRepository.php');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
 
@@ -15,7 +15,7 @@ switch ($action) {
         $pageRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) &&($_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0' ||  $_SERVER['HTTP_CACHE_CONTROL'] == 'no-cache'); 
 
         if(isset($_SESSION['adresse_mail'])){
-            $Client = ClientRepository::selectInfoClient($_SESSION['adresse_mail']);
+            $Client = UserRepository::selectInfoClient($_SESSION['adresse_mail']);
 
             $nom = $Client->getNom();
             $prenom = $Client->getPrenom();

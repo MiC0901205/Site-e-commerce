@@ -105,8 +105,7 @@ label .password-icon:hover {
 }
 
 .annuler {
-    padding-left: 24.5%;
-    padding-right: 25%;
+    width: 100%;
 }
 
 .btn-annuler-modif {

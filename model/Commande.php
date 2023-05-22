@@ -4,10 +4,10 @@ class Commande {
     // Properties
     private $idCommande;
     private $date;
-    private $idClient;
+    private $idUser;
 
 
-    // SETTER AND GETTER idClient
+    // SETTER AND GETTER idCommande
     public function setIdCmd($idCommande) {
         $this->idCommande = $idCommande;
     }
@@ -24,11 +24,11 @@ class Commande {
     }
 
     // SETTER AND GETTER prenom
-    public function setIdClient($idClient) {
-        $this->idClient = $idClient;
+    public function setIdUser($idUser) {
+        $this->idUser = $idUser;
     }
-    public function getIdClient() {
-        return $this->idClient;
+    public function getIdUser() {
+        return $this->idUser;
     }
 
 }

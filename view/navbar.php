@@ -148,8 +148,8 @@
 								</div>
 								</a>
 							<ul class="dropdown-menu dropdown-menu-end">';
-							if(isset($_SESSION['isAdmin'])) {
-								if($_SESSION['isAdmin'] == 1) {
+							if(isset($_SESSION['role'])) {
+								if($_SESSION['role'] == 'ROLE_ADMIN') {
 									echo '<li><a class="dropdown-item" href="./index.php?uc=admin&action=admin"> Administration </a></li>';
 									echo $parameterUser;		
 								} else {

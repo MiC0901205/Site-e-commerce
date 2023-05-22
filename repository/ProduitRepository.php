@@ -174,17 +174,26 @@ class ProduitRepository {
 
     public static function searchProduit($search) {
         $db = loginDB();
-        
-        $sql = $db->prepare('SELECT p.idProduit, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description FROM produit p WHERE nom LIKE :search OR description LIKE :search');
+
         $search = '%'.$search.'%'; // Ajouter les caractères joker autour de la recherche
+
+        $sql = $db->prepare('SELECT p.idProduit, p.Prix, p.Couleur, p.Image, p.Poids, p.Nom, p.Largeur, p.Longueur, p.Hauteur, p.description
+                            FROM produit p 
+                            JOIN batterie b ON b.idProduit = p.idProduit 
+                            JOIN categorie c ON c.idCateg = b.idCateg 
+                            JOIN type t ON t.idType = p.idType 
+                            WHERE t.libelle LIKE :search 
+                                OR p.nom LIKE :search 
+                                OR p.description LIKE :search 
+                                OR c.valeurCateg LIKE :search');
         $sql->bindParam(':search', $search, PDO::PARAM_STR);
+        $sql->bindParam(':lastKeyword', $lastKeyword, PDO::PARAM_STR);
         $sql->execute();
-        $sql->setFetchMode(PDO::FETCH_CLASS, 'Produit'); 
+        $sql->setFetchMode(PDO::FETCH_CLASS, 'Produit');
         $req = $sql->fetchAll();
 
-        $db = null; 
+        $db = null;
 
         return $req;
-    
     }
 }

@@ -5,11 +5,11 @@ require_once('./model/Commande.php');
 
 class CommandeRepository {
 
-    public static function insertCommande($idClient) {
+    public static function insertCommande($idUser) {
         $db = loginDB();
 
-        $sql = $db->prepare("INSERT INTO `commandes`(`date`, `idClient`) VALUES (CURRENT_TIMESTAMP, :idClient);");
-        $sql->bindParam(':idClient', $idClient);
+        $sql = $db->prepare("INSERT INTO `commandes`(`date`, `idUser`) VALUES (CURRENT_TIMESTAMP, :idUser);");
+        $sql->bindParam(':idUser', $idUser);
         $sql->execute();
         
         $db = null;

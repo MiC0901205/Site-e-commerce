@@ -51,14 +51,14 @@ include 'navbar.php';
 			</div>
 			<div>
 				<ul>
-					<li class="nav_last">
-						<p> © 2021-2023, Peri-Flash.com </p>
-					</li>
+				<li class="nav_last">
+					<p class="copyright">
+					© 2021-2023, Peri-Flash.com
+					</p>
+				</li>
 				</ul>
 			</div>
 		</div>
-
-	<script src="../js/accueil.js"></script> 
 </body>
 </html> 
 		  

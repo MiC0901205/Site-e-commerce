@@ -1,7 +1,7 @@
 <?php
 
-include './repository/ClientRepository.php';
-require_once('./model/Client.php');
+include './repository/UserRepository.php';
+require_once('./model/User.php');
 require_once('./repository/CommandeRepository.php');
 require_once('./model/Commande.php');
 
@@ -10,6 +10,9 @@ $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
 switch ($action) {
 
     case 'paiement':
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        } 
         include './view/paiement.php';
     break;
 
@@ -77,11 +80,11 @@ switch ($action) {
 
         // exécute la requête paramétrée 
         try{
-            $Client = ClientRepository::RecupIdUser($_SESSION['adresse_mail']);
+            $User = UserRepository::RecupIdUser($_SESSION['adresse_mail']);
 
-            $idClient = $Client->getId();
+            $id = $User->getId();
 
-            $sql = CommandeRepository::insertCommande($idClient);
+            $sql = CommandeRepository::insertCommande($id);
 
             if ($sql) {
 

@@ -1,133 +1,200 @@
-body{
-    background:rgb(82, 1, 82);
-}
-#container{
-    width:400px;
-    margin:0 auto;
-    margin-top:10%;
-}
-/* Bordered form */
-form {
-    width:100%;
-    padding: 30px;
-    border: 1px solid #f1f1f1;
-    background: #fff;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-#container h1{
-    width: 100%;
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
     margin: 0 auto;
-    padding-bottom: 10px;
-}
-
-/* Full-width inputs */
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+    padding: 20px;
+  }
+  
+  /* Header */
+  header {
+    background-color: rgb(70, 2, 70);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 28px;
+    margin: 0;
+  }
+  
+  /* Product List */
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .product {
+    flex-basis: 50%;
+    background-color: white;
     border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-input[type=submit] {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .product h4 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .product img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .product p {
+    margin: 0;
+  }
+  
+  form label {
+    font-weight: bold;
+  }
+  
+  form input[type="text"],
+  form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form input[type="submit"] {
     background-color: #53af57;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
-}
-input[type=submit]:hover {
-    background-color: white;
-    color: #53af57;
-    border: 1px solid #53af57;
-}
-
-#annuler{
+    border-radius: 4px;
+  }
+  
+  form input[type="submit"]:hover {
+    background-color: #449c4e;
+  }
+  
+  #annuler {
     background-color: gray;
-    color : white;
+    color: white;
     padding: 14px 20px;
-    margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    border-radius: 4px;
     text-align: center;
-}
-
-#annuler:hover{
-    background-color: white;
-    color : gray;
-    border: 1px solid gray;
-}
-
-#annuler>a{
-    color:white;
-}
-
-#annuler:hover>a{
-    color:gray;
-    font-weight: 300;
-}
-
-
-#inscription{
-    text-align: center;
-}
-
-.date{
-    margin-top:20px;
-}
-
-select{
-    margin-right: 20px;
-}
-
-a:link {
-    text-decoration: none;
-    color: black;
-}
-
-a:visited {
-    text-decoration: none;
-    color: black;
-}
-
-a:focus {
-    text-decoration: none;
-    color: black;
-}
-
-a:hover {
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
-}
-
-a:active {
-    text-decoration: none;
-    color: black;
-}
-
-.errMessage{
-    font-size: 10px;
-    color: red;
-}
-
-.Messagebox{
-    border: 1px solid red !important;
-}
-
-header {
+  }
+  
+  #annuler:hover {
+    background-color: #999;
+  }
+  
+  #annuler a {
     color: white;
-    margin-left: 39%;
-    margin-bottom: -8%;
-    margin-top: 2%;
-}
+    text-decoration: none;
+  }
+  
+  #annuler:hover a {
+    color: gray;
+    font-weight: 300;
+  }
+  
+  .errMessage {
+    font-size: 14px;
+    color: red;
+  }
+  
+  .prix {
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .product {
+      flex-basis: 100%;
+    }
+  
+    form input[type="submit"],
+    #annuler {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
 
-img {
-    margin-left: -4%;
-}
+  .button-container {
+    display: flex;
+    justify-content: space-between; /* Répartit l'espace horizontalement */
+    margin-top: 10px;
+  }
+  
+  .button-container input[type="submit"],
+  .button-container input[type="button"] {
+    flex: 1; /* Utilise tout l'espace disponible */
+    margin-right: 5px; /* Ajoute un espacement entre les boutons */
+  }
 
+  .form-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .button-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button-full-width {
+    width: 100%;
+  }
+
+  .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  .button-wrapper input[type="submit"],
+  .button-wrapper input[type="button"] {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .product {
+    flex-basis: 40%; /* Ajustez la valeur selon vos besoins */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-right: 10px; /* Ajoute une marge de 10 pixels à droite */
+  }
+  
+
+  @media (max-width: 768px) {
+    .product {
+      flex-basis: 100%;
+    }
+  }
+  
+  
+  
+  
+  
+  

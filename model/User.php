@@ -1,8 +1,8 @@
 <?php
 
-class Client {
+class User {
     // Properties
-    private $idClient;
+    private $id;
     private $nom;
     private $prenom;
     private $adresse;
@@ -13,14 +13,14 @@ class Client {
     private $cp;
     private $tel;
     private $mdp;
-    private $isAdmin;
+    private $role;
 
-    // SETTER AND GETTER idClient
-    public function setId($idClient) {
-        $this->idClient = $idClient;
+    // SETTER AND GETTER idUser
+    public function setId($idUser) {
+        $this->id = $idUser;
     }
     public function getId() {
-        return $this->idClient;
+        return $this->id;
     }
 
     // SETTER AND GETTER nom
@@ -103,12 +103,12 @@ class Client {
         return $this->mdp;
     }
 
-    // SETTER AND GETTER isAdmin
-    public function setIsAdmin($isAdmin) {
-        $this->isAdmin = $isAdmin;
+    // SETTER AND GETTER role
+    public function setRole($role) {
+        $this->role = $role;
     }
-    public function getIsAdmin() {
-        return $this->isAdmin;
+    public function getRole() {
+        return $this->role;
     }
 
 }

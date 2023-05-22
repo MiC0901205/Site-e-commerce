@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../css/adminProduit.css" media="screen" type="text/css"/>
+    <link rel="stylesheet" href="../css/adminAjout.css" media="screen" type="text/css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <h1>Ajout d'un produit</h1>
-    <form action="./index.php?uc=admin&action=verificationAjout" method="POST" enctype="multipart/form-data">
+    <form action="./index.php?uc=admin&action=verificationAjoutProduit" method="POST" enctype="multipart/form-data">
     <?php 
         if(isset($_GET['error'])) {
             if($_GET['error'] == true) {
@@ -88,8 +88,8 @@
         </div>
         
         <div class="form-group row">
-            <input type="submit" class="btn btn-primary btn-block" id="valider" value="Valider">
+            <input type="submit" class="btn btn-primary btn-block" id="valider-prod" value="Valider">
         </div>   
-        <a href="../index.php?uc=admin&action=admin"><input class="btn btn-secondary btn-block" id="annulerAjout" type="button" value="Annuler"/></a>    
+        <a href="../index.php?uc=admin&action=adminProduit"><input class="btn btn-secondary btn-block" id="annulerAjout" type="button" value="Annuler"/></a>    
     </form>
 </body>

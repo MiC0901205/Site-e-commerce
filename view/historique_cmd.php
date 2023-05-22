@@ -18,7 +18,6 @@ include './repository/ProduitRepository.php';
                 <?php 
                     foreach($sql as $uneCommande){
                         $result_Produit = ProduitRepository::RecupProdByCmd($uneCommande);
-
                         echo "<tr>
                             <th scope='row'> ".$uneCommande['idCommande']."</th>
                             <td>";

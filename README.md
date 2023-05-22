@@ -1,44 +1,50 @@
 # Site E-commerce
-Site created for non-profit purposes 
+Site créé à des fins non lucratives
 
 ## Authors
 - Mickael Pêcheur
 
 ## ACCOUNT for Testing
+
 password : test
 
 email : test@gmail.com
 
-## Accueil
-1. Fonctionnalité 
-   - Permet à l'utilisateur de voir le type de produits que l'on vend sur le site
-   - L'utilisateur aura une vue d'ensemble du site  
+## ACCOUNT for Testing MAUI
 
-## Connexion
-1. Fonctionnalité 
-   - Permet à l'utilisateur de se connecter 
+password : Gerard1@
+
+email : gerard.menvussat@gmail.com
+
+## Accueil
+   - Mise en place d'un footer contenant les informations necessaires à la prévention et la sécurité des utilisateurs
+   - Mise en place d'une navbar qui va permettre une meilleure exérience utilisateur pour naviguer sur le site 
+
+## Connexion 
+   - Module de connexion demandant un mot de passe et une adresse mail
+   - Si 5 erreurs sont faites alors, le module se bloque, et un message d'erreur est marqué 
 
 ## Inscription
-1. Fonctionnalité 
-   - Permet à l'utilisateur de s'inscrire 
+   - Module d'inscription demandant toutes les informations utiles sur l'utilisateur
+   - Page dépendant du module de connexion (clique sur "Pas de compte")
 
 ## Produit
-1. Fonctionnalité 
-   - Affiche tous les produits à l'utilisateur
+   - Différents onglets sur le site on était créé pour pouvoir observer des produits selon leur type
+   - Il y a aussi une barre de recherche pour pouvoir retrouver un produit
+   - Une fois la souris passé sur le produit, il est possible de voir sa description
 
 ## Compte
-1. Fonctionnalité 
-   - Permet à l'utilisateur de voir ces informations personnelles  
-   - L'utilisateur peut modifier ces données s'il le souhaite
+   - Mise en place d'un petit menu pour l'uitlisateur connecté qui lui permettra de voir ces informations personnelles  
+   - Il pourra aussi à partir de ce menu, choisir de modifier ces données
+   - S'il le souhaite aussi, l'utilisateur pourra observer son historique de commande
 
 ## Panier
-1. Fonctionnalité 
-   - Permet à l'utilisateur de voir les produits qu'il a choisi
-   - L'utilisateur pourra les payer ensuite
+   - Mise en place d'un panier qui sera incrementé par des prduits lorque que le client aura choisi son produit
+   - Lorsque l'utilisateur a finis, il pourra cliquer sur le bouton "payer"
 
-## Historique commande
-1. Fonctionnalité 
-   - Permet à l'utilisateur de voir toutes les commandes qu'il a passée
+## Paiement
+   - Mise en place d'un module de paiement (mais ne déduis pas pour le moment l'argent dans le cadre de ce projet scolaire).
+   - L'utilisateur pourra revoir les produits sur le module et aura un petit formulaire lui demandant d'entre ces informations bancaires
 
 ## Lien pour accéder à la documentation
 [accès Doc](https://urlz.fr/lqCT)
