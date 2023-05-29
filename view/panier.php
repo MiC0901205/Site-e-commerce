@@ -18,48 +18,46 @@ require_once('./repository/ProduitRepository.php');
             echo '<div class="row justify-content-around">';   
 
             if(isset($_SESSION['panierListe']) && (isset($_SESSION['panierListe']['produit']) && count($_SESSION['panierListe']['produit']) > 0)) {
-                if(isset($_SESSION['panierListe']['produit']) && count($_SESSION['panierListe']) > 0){
-                    foreach($_SESSION['panierListe']['produit'] as $id => $qte){
-                        if(!empty($id)) {
-                            $Produit = ProduitRepository::selectProduitById($id);
-                            
-                            $idProduit = $Produit->getId();
-                            $prix = $Produit->getPrix();
-                            $couleur = $Produit->getCouleur();
-                            $image = $Produit->getImage();
-                            $nom = $Produit->getNom();
+                foreach($_SESSION['panierListe']['produit'] as $id => $qte){
+                    if(!empty($id)) {
+                        $Produit = ProduitRepository::selectProduitById($id);
+                        
+                        $idProduit = $Produit->getId();
+                        $prix = $Produit->getPrix();
+                        $couleur = $Produit->getCouleur();
+                        $image = $Produit->getImage();
+                        $nom = $Produit->getNom();
 
-                            $prixtot += $prix * $qte;
+                        $prixtot += $prix * $qte;
 
-                            echo '<div class="col-sm-3 center product">
-                                        <h4> '.$nom.'</h4>
-                                        <img class="img_Prod" src="./img/'.$image.'" width = "200px"> 
-                                        <p>
-                                            Couleur : '.$couleur.'
-                                        </p>
-                                        <p>
-                                            Prix : '.$prix.'€
-                                        </p>
-                                        <a href="./index.php?uc=panier&action=panier&removeallid='.$idProduit.'" class="btn btn-primary" type="submit">Supprimer du panier</a>
-                                        <p> Quantité : <div class="d-flex flex-row justify-content-center">
-                                                        <div style="text-align:center"><a href="./index.php?uc=panier&action=panier&removeid='.$idProduit.'" class="qte_a"> - </a>
-                                                    </div>
-                                                    <span class="qte_span">'.$qte. '</span>
-                                                    <div style="text-align:center">
-                                                        <a href="./index.php?uc=panier&action=panier&id='.$idProduit.'" class="qte_a"> + </a>
-                                                    </div>
+                        echo '<div class="col-sm-3 center product">
+                                    <h4> '.$nom.'</h4>
+                                    <img class="img_Prod" src="./img/'.$image.'" width = "200px"> 
+                                    <p>
+                                        Couleur : '.$couleur.'
+                                    </p>
+                                    <p>
+                                        Prix : '.$prix.'€
+                                    </p>
+                                    <a href="./index.php?uc=panier&action=panier&removeallid='.$idProduit.'" class="btn btn-primary" type="submit">Supprimer du panier</a>
+                                    <p> Quantité : <div class="d-flex flex-row justify-content-center">
+                                                    <div style="text-align:center"><a href="./index.php?uc=panier&action=panier&removeid='.$idProduit.'" class="qte_a"> - </a>
                                                 </div>
-                                        </p>
-                                        </div>';
-                        } else {
-                            echo "Il n' y a pas d'id correspondant à un produit";
-                        }
+                                                <span class="qte_span">'.$qte. '</span>
+                                                <div style="text-align:center">
+                                                    <a href="./index.php?uc=panier&action=panier&id='.$idProduit.'" class="qte_a"> + </a>
+                                                </div>
+                                            </div>
+                                    </p>
+                                    </div>';
+                    } else {
+                        echo "Il n' y a pas d'id correspondant à un produit";
                     }
-                echo '</div>';
                 }
+            echo '</div>';
 
-                echo '<p>
-                Prix totale : '.$prixtot.'€
+            echo '<p>
+            Prix totale : '.$prixtot.'€
                 </p>';
 
             echo '<div class="d-flex flex-row bouton">

@@ -4,6 +4,8 @@ include './repository/UserRepository.php';
 require_once('./model/User.php');
 require_once('./repository/CommandeRepository.php');
 require_once('./model/Commande.php');
+require_once('./repository/ProduitRepository.php');
+
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
 
@@ -91,12 +93,26 @@ switch ($action) {
                 $Commande = CommandeRepository::selectLastCommande();
 
                 $idCommande = $Commande->getIdCmd();
+
+                $dateActuelle = date("Y-m-d H:i:s");
+
+                $cmdStatut = CommandeRepository::InsertCmdStatut($idCommande, 1, $dateActuelle);
             
                 if(isset($_SESSION['panierListe']['produit'])){
                     foreach($_SESSION['panierListe']['produit'] as $id => $qte){
                         $sql = CommandeRepository::InsertCmdWithProd($idCommande, $id, $qte);
 
-                        if ($sql) {
+                        $dateActuellePrepa = date("Y-m-d H:i:s", strtotime($dateActuelle . " +10 minutes"));
+
+                        $cmdStatut = CommandeRepository::InsertCmdStatut($idCommande, 2, $dateActuellePrepa);
+                        
+                        $stockQte = ProduitRepository::SelectQteStock($id);
+
+                        $quantite = $stockQte - $qte;
+
+                        $req = ProduitRepository::UpdateStock($id, $quantite);
+
+                        if ($sql && $cmdStatut && $req) {
                            include './view/confirm_paiement.php';
                         } else {
                             echo "Error: " . $sql . "<br>" . $cnx->error;
@@ -108,10 +124,10 @@ switch ($action) {
             }
             // ferme la connexion 
             unset($cnx); 
+            unset($_SESSION['panierListe']);
         } catch (Exception $ex) {
             die('Erreur : ' . $ex->getMessage()); 
         } 
-        unset($_SESSION['panierListe']);
     break;
     
     default :

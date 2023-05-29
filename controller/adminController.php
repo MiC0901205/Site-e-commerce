@@ -47,6 +47,7 @@ switch ($action) {
     break;
 
     case 'ajoutProduit':
+        $typesProduits = TypeRepository::getTypesProduits();
         include './view/ajoutProduit.php';
     break;
 

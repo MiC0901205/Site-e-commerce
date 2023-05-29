@@ -9,7 +9,7 @@ class ProduitRepository {
         $db = loginDB();
 
         // écrire la requête sql de sélection des produits 
-        $listeProduct = $db->prepare('SELECT b.idProduit, c.valeurCateg, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description FROM batterie b JOIN categorie c on c.idCateg = b.idCateg JOIN produit p on p.idProduit = b.idProduit WHERE c.valeurCateg LIKE ?'); 
+        $listeProduct = $db->prepare('SELECT b.idProduit, c.valeurCateg, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description, qteStock FROM batterie b JOIN categorie c on c.idCateg = b.idCateg JOIN produit p on p.idProduit = b.idProduit WHERE c.valeurCateg LIKE ?'); 
         $listeProduct->execute(array($type));
 
         // ferme la connexion
@@ -22,7 +22,7 @@ class ProduitRepository {
         $db = loginDB();
 
         // écrire la requête sql de sélection des produits 
-        $listeProduct = $db->prepare('SELECT b.idProduit, c.valeurCateg, Capacite, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description FROM batterie b JOIN categorie c on c.idCateg = b.idCateg JOIN produit p on p.idProduit = b.idProduit WHERE Capacite > ? AND Capacite <= ?'); 
+        $listeProduct = $db->prepare('SELECT b.idProduit, c.valeurCateg, Capacite, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description ,qteStock FROM batterie b JOIN categorie c on c.idCateg = b.idCateg JOIN produit p on p.idProduit = b.idProduit WHERE Capacite > ? AND Capacite <= ?'); 
         $listeProduct->execute(array($min, $max));
 
         $db = null;
@@ -34,7 +34,7 @@ class ProduitRepository {
         $db = loginDB();
 
         // écrire la requête sql de sélection des produits 
-        $listeProduct = $db->prepare('SELECT b.idProduit, c.valeurCateg, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description FROM batterie b JOIN categorie c on c.idCateg = b.idCateg JOIN produit p on p.idProduit = b.idProduit  WHERE Largeur * Longueur * Hauteur > ? AND  Largeur * Longueur * Hauteur <= ?'); 
+        $listeProduct = $db->prepare('SELECT b.idProduit, c.valeurCateg, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description, qteStock FROM batterie b JOIN categorie c on c.idCateg = b.idCateg JOIN produit p on p.idProduit = b.idProduit  WHERE Largeur * Longueur * Hauteur > ? AND  Largeur * Longueur * Hauteur <= ?'); 
         $listeProduct->execute(array($min, $max));
 
         $db = null;
@@ -46,7 +46,7 @@ class ProduitRepository {
         $db = loginDB();
 
         // écrire la requête sql de sélection des produits 
-        $listeProduct = $db->prepare('SELECT idProduit, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description FROM produit WHERE idType LIKE ?'); 
+        $listeProduct = $db->prepare('SELECT idProduit, Prix, Couleur, Image, Poids, Nom, Largeur, Longueur, Hauteur, description, qteStock FROM produit WHERE idType LIKE ?'); 
         $listeProduct->execute(array($type));
 
         $db = null;
@@ -60,7 +60,7 @@ class ProduitRepository {
         }
         $db = loginDB();
 
-        $sql = $db->prepare('SELECT idProduit, Prix, Couleur, Image, Nom FROM produit where idProduit = :id'); 
+        $sql = $db->prepare('SELECT idProduit, Prix, Couleur, Image, Nom, qteStock FROM produit where idProduit = :id'); 
         $sql->bindParam(':id', $id);
         $sql->execute();
         $sql->setFetchMode(PDO::FETCH_CLASS, 'Produit'); 
@@ -195,5 +195,32 @@ class ProduitRepository {
         $db = null;
 
         return $req;
+    }
+
+    public static function SelectQteStock($idProduit) {
+        $db = loginDB();
+
+        $qteStock = $db->prepare('SELECT qteStock FROM produit WHERE idProduit = :id'); 
+        $qteStock->bindParam(':id', $idProduit);
+        $qteStock->execute();
+
+        $stockQte = $qteStock->fetchColumn();
+
+        $db = null;
+
+        return $stockQte;
+    }
+
+    public static function UpdateStock($idProduit, $qte) {
+        $db = loginDB();
+
+        $sql = $db->prepare('UPDATE `produit` SET `qteStock`= :qte WHERE idProduit = :id');
+        $sql->bindParam(':qte', $qte);
+        $sql->bindParam(':id', $idProduit);
+        $sql->execute();
+
+        $db = null;
+
+        return $sql;
     }
 }

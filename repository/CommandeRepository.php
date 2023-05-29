@@ -44,4 +44,19 @@ class CommandeRepository {
 
         return $sql;
     }
+
+    public static function InsertCmdStatut($idCommande, $idStatut, $date) {
+        $db = loginDB();
+
+        $sql = $db->prepare("INSERT INTO `commandes_statut`(`idCommande`, `idStatut`, `date`) VALUES (:idCommande,:idStatut,:date)");
+        $sql->bindParam(':idCommande', $idCommande);
+        $sql->bindParam(':idStatut', $idStatut);
+        $sql->bindParam(':date', $date);
+
+        $sql->execute(); 
+
+        $db = null;
+
+        return $sql;
+    }
 }

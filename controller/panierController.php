@@ -1,6 +1,5 @@
 <?php
 require_once('./model/login_db.php');
-require_once('./repository/ProduitRepository.php');
 require_once('./repository/UserRepository.php');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);

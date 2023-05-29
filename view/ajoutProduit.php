@@ -80,10 +80,9 @@
             <label for="idType">Type de produit :</label>
             <select class="form-control select" id="idType" name="idType" required>
             <option value="">-- Sélectionnez un type --</option>
-            <option value="1">Batterie</option>
-            <option value="2">Souris</option>
-            <option value="3">Clavier</option>
-            <option value="4">Cable de recharge</option>
+            <?php foreach ($typesProduits as $typeProduit) { ?>
+                <option value="<?php echo $typeProduit['idType']; ?>"><?php echo $typeProduit['libelle']; ?></option>
+            <?php } ?>
             </select>
         </div>
         

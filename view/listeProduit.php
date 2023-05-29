@@ -19,11 +19,24 @@ include 'navbar.php';
 								Prix : '.$product['Prix'].'€
 							</p>
 							<p>
-								Dimensions : '.$product['Longueur'].' x '.$product['Largeur'].' x '.$product['Hauteur'].' cm <br>
-								Poids : '.$product['Poids'].' g
+								Dimensions : '.$product['Longueur'].' x '.$product['Largeur'].' x '.$product['Hauteur'].' cm <br>						
 							</p>
-							<a href="./index.php?uc=panier&action=panier&id='.$product['idProduit'].'" class="btn btn-primary" type="submit">Ajouter au panier</button></a>
-						</div>';
+							<p>
+								Poids : '.$product['Poids'].' g	
+							</p>
+							';
+							if($product['qteStock'] == 0) {
+								echo '<p>
+										Quantité en stock : <span style="color: red;">Rupture de stock</span>
+									</p>';
+								echo '<button class="btn btn-primary" disabled>Ajouter au panier</button></a>';
+							} else {
+								echo '<p>
+										Quantité en stock : '.$product['qteStock'].'
+									</p>';
+								echo '<a href="./index.php?uc=panier&action=panier&id='.$product['idProduit'].'" class="btn btn-primary" type="submit">Ajouter au panier</button></a>';
+							}
+						echo '</div>';
 				}  	
 			?>
 		</div>

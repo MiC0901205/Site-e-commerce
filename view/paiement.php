@@ -1,6 +1,4 @@
-<?php
-include './repository/ProduitRepository.php';
-?>
+
 <!DOCTYPE html>
 <html>
 <head>

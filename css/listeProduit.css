@@ -4,7 +4,7 @@
     margin-bottom: 20px;
     text-align: center;
     border-radius: 10px 85px / 120px;
-    height: 400px; /* Ajout de la hauteur fixe */
+    height: 450px; /* Ajout de la hauteur fixe */
     position: relative; /* Ajout de la position relative */
 }
 
