@@ -32,7 +32,17 @@ switch ($action) {
     break;
 
     case 'supprimerUser':
-        UserRepository::deleteClient($_GET['id']);
+        $LesCmd = UserRepository::getLesCommandesByUser($_GET['id']);
+
+        if(count($LesCmd) > 0) {
+            foreach ($LesCmd as $idCommande) {
+                UserRepository::deleteCmdP($idCommande);
+                UserRepository::deleteStatutCmd($idCommande);
+            }
+            UserRepository::deleteCmd($_GET['id']);
+        }
+
+        UserRepository::deleteUser($_GET['id']);
         header('Location: ./index.php?uc=admin&action=adminUser&removeid='.$_GET['id'].'');
     break;
 
@@ -407,7 +417,6 @@ switch ($action) {
                     $er_seuilAlert = ("Le seuil d'alerte du produit ne peut pas être vide");
                 } 
                 
-                var_dump($valid);
 
                 if(empty($idType)){
                     $valid = false;
@@ -439,7 +448,7 @@ switch ($action) {
                         echo "Error: La modification n'a pas été faite";
                     }
                 } else {
-                    //header("Location: ./index.php?uc=admin&action=adminProduit&modif=0");
+                    header("Location: ./index.php?uc=admin&action=adminProduit&modif=0");
                 }
             }
         } else {
@@ -605,8 +614,6 @@ switch ($action) {
                     $Type = new Type();
                     $Type->setId($_GET['idType']);
                     $Type->setLibelle($libelle);
-
-                    var_dump($Type);
 
                     $sql = TypeRepository::updateType($Type);
 

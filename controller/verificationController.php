@@ -44,7 +44,7 @@ switch ($action) {
       ---------------
       Ceci est un mail automatique, Merci de ne pas y répondre.';
             
-      //mail($destinataire, $sujet, $message, $entete);
+      mail($destinataire, $sujet, $message, $entete);
       header('Location: ./index.php?uc=register&action=enregistrement&mail_send=true');
       break;
 
@@ -85,7 +85,6 @@ switch ($action) {
                $blockDuration = 300;
                $_SESSION['login_attempts']++;
                header('Location: ./index.php?uc=login&action=demandeConnexion&error=true');
-               var_dump($_SESSION['login_attempts']);
                if ($_SESSION['login_attempts'] >= 5) {
                   $elapsedTime = time() - $_SESSION['login_blocked_time'];
                   if ($elapsedTime < $blockDuration) {

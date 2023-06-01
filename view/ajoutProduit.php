@@ -72,7 +72,7 @@
                 <input type="number" class="form-control" id="hauteur" name="hauteur" value="<?php if (isset($_POST['hauteur'])) { echo $_POST['hauteur']; } ?>" required>
             </div>
             <div class="form-group">
-                <label for="poids">Poids : (en kg)</label>
+                <label for="poids">Poids : (en g)</label>
                 <input type="number" class="form-control" id="poids" name="poids" value="<?php if (isset($_POST['poids'])) { echo $_POST['poids']; } ?>" required>
             </div>
         </div>

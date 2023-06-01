@@ -32,18 +32,6 @@ for(let i = 0; i < eye.length; i++) {
     });
 }
 
-const inputTelephone = document.querySelector('#telephone');
-
-inputTelephone.addEventListener('input', (event) => {
-  let telephone = event.target.value;
-  
-  telephone = telephone.replace(/\D/g, '');
-  
-  telephone = telephone.replace(/(\d{2})(?=\d)/g, '$1 ');
-  
-  event.target.value = telephone;
-});
-
 function updateButtons() {
     var checkedCount = 0;
     var checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -83,7 +71,7 @@ function updateButtons() {
         };
         editButton.onclick = () => {
             checkboxes[i].checked = false;
-            location.replace('./index.php?uc=admin&action=infoType&id='+ id +'');
+            location.replace('./index.php?uc=admin&action=infoUser&id='+ id +'');
         };
     } else {
         deleteButton.disabled = true;
@@ -94,3 +82,15 @@ function updateButtons() {
         deleteButton.style.borderColor = 'grey';
     }
 }
+
+const inputTelephone = document.querySelector('#telephone');
+
+inputTelephone.addEventListener('input', (event) => {
+  let telephone = event.target.value;
+  
+  telephone = telephone.replace(/\D/g, '');
+  
+  telephone = telephone.replace(/(\d{2})(?=\d)/g, '$1 ');
+  
+  event.target.value = telephone;
+});

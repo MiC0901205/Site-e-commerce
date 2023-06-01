@@ -51,12 +51,12 @@
         </div>
         <div class="supprimer-infos">
             <a href="#">
-                <input id="delete-button" class="supprimer" type="button" value="Supprimer le utilisateur" disabled/>
+                <input id="delete-button" class="supprimer" type="button" value="Supprimer l'utilisateur" disabled/>
             </a>
         </div>
         <div class="modifier-infos">
             <a href="#">
-                <input id="edit-button" class="modifier" type="button" value="Modifier le utilisateur" disabled/>
+                <input id="edit-button" class="modifier" type="button" value="Modifier l'utilisateur" disabled/>
             </a>
         </div>
     </div>

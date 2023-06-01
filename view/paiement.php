@@ -116,8 +116,8 @@
                         </div>
                     </div>
                     <br/>
-                    <label><b>Code de vérification</b></label>
-                    <input type="text" class="<?php if(isset($errCV)){ echo "Messagebox"; }?>" placeholder="Entrer votre code de vérification" name="CV" maxlength="3" minlength="3" value="<?php if(isset($_COOKIE['CV'])){ echo $_COOKIE['CV']; }?>">
+                    <label><b>Code de sécurité (CVV)</b></label>
+                    <input type="text" class="<?php if(isset($errCV)){ echo "Messagebox"; }?>" placeholder="Entrer votre code de sécurité" name="CV" maxlength="3" minlength="3" value="<?php if(isset($_COOKIE['CV'])){ echo $_COOKIE['CV']; }?>">
                     <?php 
                     if (isset($errCV)){
                         ?>

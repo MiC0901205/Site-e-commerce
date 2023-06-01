@@ -3,7 +3,6 @@ include 'navbar.php';
 require_once('./repository/ProduitRepository.php');
 
 ?>
-
 <link rel="stylesheet" href="../css/panier.css">
 <div id="panier"> 
     <form action="./index.php?uc=paiement&action=paiement" method="POST">
@@ -81,3 +80,15 @@ require_once('./repository/ProduitRepository.php');
         </div>
     </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var currentQuantity = <?php echo $currentQuantity; ?>;
+        var stockQuantity = <?php echo $stockQuantity; ?>;
+
+        if (currentQuantity >= stockQuantity) {
+            var message = "La quantité maximale en stock a été atteinte pour ce produit.";
+            alert(message);
+        }
+    });
+</script>

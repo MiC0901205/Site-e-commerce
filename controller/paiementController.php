@@ -101,10 +101,6 @@ switch ($action) {
                 if(isset($_SESSION['panierListe']['produit'])){
                     foreach($_SESSION['panierListe']['produit'] as $id => $qte){
                         $sql = CommandeRepository::InsertCmdWithProd($idCommande, $id, $qte);
-
-                        $dateActuellePrepa = date("Y-m-d H:i:s", strtotime($dateActuelle . " +10 minutes"));
-
-                        $cmdStatut = CommandeRepository::InsertCmdStatut($idCommande, 2, $dateActuellePrepa);
                         
                         $stockQte = ProduitRepository::SelectQteStock($id);
 
@@ -112,19 +108,22 @@ switch ($action) {
 
                         $req = ProduitRepository::UpdateStock($id, $quantite);
 
-                        if ($sql && $cmdStatut && $req) {
-                           include './view/confirm_paiement.php';
-                        } else {
-                            echo "Error: " . $sql . "<br>" . $cnx->error;
-                        }
                     }
-                } 
+                    if ($sql) {
+                        include './view/confirm_paiement.php';
+                     } else {
+                         echo "Error: " . $sql . "<br>" . $cnx->error;
+                     }
+                    $dateActuellePrepa = date("Y-m-d H:i:s", strtotime($dateActuelle . " +10 minutes"));
+
+                    $cmdStatut = CommandeRepository::InsertCmdStatut($idCommande, 2, $dateActuellePrepa);
+                }
             } else {
                 echo "Error: " . $sql . "<br>" . $cnx->error;
             }
             // ferme la connexion 
             unset($cnx); 
-            unset($_SESSION['panierListe']);
+            unset($_SESSION['panierListe']); 
         } catch (Exception $ex) {
             die('Erreur : ' . $ex->getMessage()); 
         } 

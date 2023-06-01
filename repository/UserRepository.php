@@ -27,7 +27,7 @@ class UserRepository {
         return $sql;
     }
 
-    public static function deleteClient($id) {
+    public static function deleteUser($id) {
         $db = loginDB();
 
         $sql = $db->prepare('DELETE FROM `user` WHERE id = :id');
@@ -251,6 +251,62 @@ class UserRepository {
         $sql->bindValue(':mdp', $mdp);
         $sql->bindValue(':role', $role);
     
+        $sql->execute();
+    
+        $db = null;
+    
+        return $sql;
+    }
+
+    public static function getLesCommandesByUser($id) {
+        $db = loginDB();
+    
+        $sql = $db->prepare('SELECT co.idCommande, date FROM commandes co JOIN user u on u.id = co.idUser WHERE u.id = :id');   
+        $sql->bindParam(':id', $id);
+        
+        // exécute la requête 
+        $sql->execute();
+        
+        $result = $sql->fetchAll(PDO::FETCH_COLUMN, 0); // Récupère uniquement la première colonne (idCommande)
+        
+        $db = null;
+    
+        return $result;
+    }
+
+    public static function deleteCmdP($idCommande) {
+        $db = loginDB();
+
+        $sql = $db->prepare("DELETE FROM `commande_produit` WHERE idCommande = :id");
+        $sql->bindParam(':id', $idCommande);
+        
+        $sql->execute();
+    
+        $db = null;
+    
+        return $sql;
+    }
+
+    public static function deleteStatutCmd($idCommande) {
+        $db = loginDB();
+
+        $sql = $db->prepare("DELETE FROM `commandes_statut` WHERE idCommande = :id");
+        $sql->bindParam(':id', $idCommande);
+        
+        $sql->execute();
+    
+        $db = null;
+    
+        return $sql;
+    }
+
+
+    public static function deleteCmd($id) {
+        $db = loginDB();
+
+        $sql = $db->prepare("DELETE FROM `commandes` WHERE idUser = :id");
+        $sql->bindParam(':id', $id);
+        
         $sql->execute();
     
         $db = null;

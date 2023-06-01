@@ -1,6 +1,7 @@
 <?php
 require_once('./model/login_db.php');
 require_once('./repository/UserRepository.php');
+require_once('./repository/ProduitRepository.php');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_URL);
 
@@ -29,22 +30,35 @@ switch ($action) {
         }
 
         if((!$pageRefreshed)){
+            
+            if(!isset($_SESSION['panierListe']['produit'])) {
+                $_SESSION['panierListe']['produit'] = array();
+            }
 
-            if(isset($_GET['id'])){
-                if(!isset($_SESSION['panierListe']['produit'])) {
-                    $_SESSION['panierListe']['produit'] = array();
-                } 
-                if (array_key_exists($_GET['id'], $_SESSION['panierListe']['produit'])){
-                    $_SESSION['panierListe']['produit'][$_GET['id']] =  $_SESSION['panierListe']['produit'][$_GET['id']] + 1;
+            if (isset($_GET['id'])) {
+                // Vérifier si la quantité demandée est inférieure ou égale à la quantité en stock du produit
+                $product = ProduitRepository::selectInfoProduit($_GET['id']); // Remplacez cette fonction par votre méthode pour récupérer les informations du produit
+                $stockQuantity = $product->getQteStock();
+                $productId = $_GET['id'];
+            
+                if (array_key_exists($productId, $_SESSION['panierListe']['produit'])) {
+                    // La quantité actuelle du produit dans le panier
+                    $currentQuantity = $_SESSION['panierListe']['produit'][$productId];
+            
+                    if ($currentQuantity < $stockQuantity) {
+                        // Augmenter la quantité du produit dans le panier uniquement si la quantité actuelle est inférieure à la quantité en stock
+                        $_SESSION['panierListe']['produit'][$productId] = $currentQuantity + 1;
+                    }
                 } else {
-                    $_SESSION['panierListe']['produit'][$_GET['id']] = 1;
-                } 
+                    // Ajouter le produit au panier avec une quantité de 1 si le produit n'est pas déjà présent
+                    $_SESSION['panierListe']['produit'][$productId] = 1;
+                    echo "success"; // Réponse de succès pour la requête AJAX
+                }
             } elseif(isset($_GET['removeid'])) {
                 if(isset($_SESSION['panierListe']['produit'])){
                     if (array_key_exists($_GET['removeid'], $_SESSION['panierListe']['produit'])){
                         $_SESSION['panierListe']['produit'][$_GET['removeid']] =  $_SESSION['panierListe']['produit'][$_GET['removeid']] - 1;
                         if ($_SESSION['panierListe']['produit'][$_GET['removeid']] <= 0){
-                            echo 'je suis ici maintenant';
                             unset($_SESSION['panierListe']['produit'][$_GET['removeid']]);
                         }
                     } 
